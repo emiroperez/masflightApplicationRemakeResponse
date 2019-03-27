@@ -51,8 +51,9 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.UserService.validarUsuario2(this); //para subir
-    
+    if (this.globals.baseUrl != "http://localhost:8887"){
+      this.UserService.validarUsuario2(this); //para subir
+    }    
   }
   // getMenuData(): void {
   //   this.appService.loadMenuOptions(this, this.handlerGetSuccessMenuData, this.handlerGetErrorMenuData);
