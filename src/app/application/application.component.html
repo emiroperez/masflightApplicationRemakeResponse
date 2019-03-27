@@ -3,8 +3,6 @@
     <div class="msf-menu-header-image-container">
         <img (click)="goTo()" *ngIf="globals.showMenu || globals.showIntro"
             src="../assets/images/logo_global_peqe.png" class="msf-menu-logo">
-            <!-- <img (click)="goTo()" *ngIf="globals.showMenu || globals.showIntro"
-                src="../../assets/images/logo_global_peqe.png" class="msf-menu-logo"> keivys-->
         <div *ngIf="globals.showCategoryArguments || globals.showTabs" class="msf-menu-logo2 msf-menu-logo">
             <div style="color: white; font-size: 14px; margin-bottom: 2%; width: 93%;">{{globals.labelCategory}}</div>
             <div style="color: #01abec; font-size: 12px; width: 93%;">{{globals.currentOption.label}}</div>
@@ -31,18 +29,12 @@
 <!--Iconos-->
 <div *ngIf="globals.dataSource && !globals.showMenu && !globals.showIntro && !globals.showCategoryArguments "
     class="msf-menu-icon-container msf-menu-icons-container">
-    <!-- <button class="msf-menu-icon"><img src="../../assets/images/ExporttoExcel.png"
-            class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()"><span
-            class="msf-vertical-middle ocultar">Export Excel</span></button> keivys-->
     <button class="msf-menu-icon"><img src="../assets/images/ExporttoExcel.png"
         class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()"><span
         class="msf-vertical-middle ocultar">Export Excel</span></button>
         <button class="msf-menu-icon"><img src="../assets/images/CopytoClipboard.png"
                 class="msf-menu-image msf-vertical-middle"><span class="msf-vertical-middle ocultar">Export
                 PDF</span></button>
-    <!-- <button class="msf-menu-icon"><img src="../../assets/images/CopytoClipboard.png"
-            class="msf-menu-image msf-vertical-middle"><span class="msf-vertical-middle ocultar">Export
-            PDF</span></button> keivys-->
 </div>
 
 <!--body-->
@@ -72,8 +64,6 @@
     </div>
     <div [ngClass]="globals.moreResultsBtn==true ? 'msf-menu-more-button' : 'msf-menu-more-button disabled-more-button'"
         (click)="moreResults()" *ngIf="globals.showTabs && globals.dataSource">
-        <!-- <img style="width: 16px;height: 16px;" src="../../assets/images/more.png"
-            class="msf-menu-image msf-vertical-middle msf-line"> keivys-->
         <img style="width: 16px;height: 16px;" src="../assets/images/more.png"
         class="msf-menu-image msf-vertical-middle msf-line">
         <div class="msf-vertical-middle msf-line" style="font-size: 13px">More Result</div>

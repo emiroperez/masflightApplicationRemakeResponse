@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 export class Globals {
   // baseUrl = "http://192.168.100.101:8887";
   // baseUrl = "http://localhost:8887";
-  // baseUrl = "http://mobile.pulse.aspsols.com:8885";
-  baseUrl = "";
+  baseUrl = "http://mobile.pulse.aspsols.com:8885";
+  // baseUrl = "";
   baseUrl2 = "http://69.64.45.220:8886";
   showTabs  : boolean = false;
   showCategoryArguments : boolean = false;

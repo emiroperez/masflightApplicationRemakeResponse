@@ -24,7 +24,7 @@ export class MobileMenuService {
     }
     url = url + "appId="+_this.globals.currentApplication.id;
     _this.globals.isLoading = true;
-    if (_this.globals.baseUrl != ""){
+    if (_this.globals.baseUrl == "http://localhost:8887"){
     this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
     }else{
     this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
@@ -49,7 +49,7 @@ export class MobileMenuService {
   getDashboardsByUser(_this, successHandler, errorHandler){
     let url = "/getDashboards?application=" + _this.globals.currentApplication.id;
 
-    if (_this.globals.baseUrl != "")
+    if (_this.globals.baseUrl == "http://localhost:8887" )
       this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
     else
       this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
@@ -58,7 +58,7 @@ export class MobileMenuService {
   
   getAdvanceFeatures(_this, successHandler, errorHandler){
     let url = "/getPlanAdvanceFeatures";
-    if (_this.globals.baseUrl != "")
+    if (_this.globals.baseUrl == "http://localhost:8887")
       this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
     else
       this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
