@@ -1,0 +1,57 @@
+
+    <div [style.visibility]="globals.dataSource && globals.currentOption.metaData==1 && !globals.template? 'visible' : 'hidden'" #TABLE>
+    <table  #table mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8 datasource">
+    
+        <ng-container  [matColumnDef]="column.columnName" *ngFor="let column of metadata">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > {{column.columnLabel}} </th>
+          <td mat-cell *matCellDef="let element"> 
+            <span *ngIf="column.columnType!='number'">{{element[column.columnName]}} </span>
+            <span *ngIf="column.columnType=='number' && column.columnFormat=='$'">${{getFormatCell(element[column.columnName]) | number:'.0-2':'en'}} </span>
+            <span *ngIf="column.columnType=='number' && column.columnFormat=='%'"> {{getFormatCell(element[column.columnName]) | number:'.0-2':'en'}}%</span>
+            <span *ngIf="column.columnType=='number' && column.columnFormat=='temp'"> {{getFormatCell(element[column.columnName]) | number:'.0-2':'en'}}°</span>
+            <span *ngIf="column.columnType=='number' && column.columnFormat==null"> {{getFormatCell(element[column.columnName]) | number:'.0-2':'en'}} </span>
+            <!-- <span *ngIf="column.columnType=='date' && column.columnFormat==null"> {{element[column.columnName]}} </span>
+            <span *ngIf="column.columnType=='date' && column.columnFormat!=null"> {{element[column.columnName] | date:'':'en'}} </span> -->
+          </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="height:30px;"></tr>
+    </table>
+    </div>
+
+    <div *ngIf="!globals.dataSource && !globals.template">
+        <div class="msf-no-results">Results not available, please select your Filters and click on Search button</div>
+    </div>
+
+    
+    <div *ngIf="globals.template && globals.currentOption.metaData==0 && !globals.dataSource" class="financial-container">
+        <div class="financial-table-container" *ngFor="let table of template">
+          <div class="financial-title">{{table.title}}</div>
+          <div class="financial-content">
+          <div class="financial-table-item"  *ngFor="let tableItem of table.tableItems" >
+            <div class="{{getCurrentClass(tableItem)}}">
+              <div  [ngClass]="tableItem.subtitle==0 ? 'financial-item-cell parent-cell' : 'no-show'">{{tableItem.label}}</div>
+              <div [ngClass]="tableItem.subtitle==0 ? 'financial-result-cell' : 'no-show'" *ngFor="let valueItem of tableItem.values">
+                <div *ngIf="tableItem.cellFormat=='string'">{{valueItem.value}}</div>
+                <div *ngIf="tableItem.cellFormat=='money'" class="cell-value" >${{valueItem.value | number:'.0-2':'en'}}</div>
+                <div *ngIf="tableItem.cellFormat=='number'" class="cell-value" >{{valueItem.value | number:'.0-2':'en'}}</div>
+              </div>
+              <div style="width: auto;width: auto;min-width: auto;
+              max-width: 100%;" [ngClass]="tableItem.subtitle==1 ? 'financial-item-cell parent-cell-subtitle' : 'no-show'" >{{tableItem.label}}</div>
+            </div>
+            <div *ngFor="let childrenItem of tableItem.children" [ngClass]="childrenItem.bold==0 ? 'financial-table-item-label-title' : 'financial-table-item-label-title msf-bold'">
+                <div class="financial-item-cell children-cell">{{childrenItem.label}}</div>
+                <div class="financial-result-cell" *ngFor="let valueItem of childrenItem.values">
+                    <div *ngIf="childrenItem.cellFormat=='string'">{{valueItem.value}}</div>
+                    <div *ngIf="childrenItem.cellFormat=='money'" class="cell-value" >${{valueItem.value | number:'.0-2':'en'}}</div>
+                    <div *ngIf="childrenItem.cellFormat=='number'" class="cell-value" >{{valueItem.value | number:'.0-2':'en'}}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </div>
+
+  
+

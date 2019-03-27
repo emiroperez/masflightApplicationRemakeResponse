@@ -1,0 +1,25 @@
+<div>
+  <div class="center">
+      <div class="msf-component-airport-title">{{argument.title}}</div>        
+  </div> 
+  <div class="msf-airline-container">
+      <div class="msf-full-width" style="text-align: center;">   
+								
+        <!--keivys <img src="../../assets/images/components/arguments/airline/aerolin.png" class="msf-airline-image"> -->
+				<img src="../assets/images/components/arguments/airline/aerolin.png" class="msf-airline-image">		   
+          <div #airline1 class="msf-component-airport-sub-title">{{argument.label1}}</div>         
+          <ng-select
+          [items]="data | async"
+          [multiple]="true"
+          [loading]="loading"
+          loadingText="Loading..."
+          [closeOnSelect]="true"
+          [hideSelected]="false"
+          bindLabel="name"
+          (search)="onSearch($event)" 
+          [(ngModel)]="argument.value1">
+      </ng-select>          
+      </div>
+      <!-- <img src="../../assets/images/components/arguments/airline/aerolin.png" class="msf-airline-image"> -->
+  </div>
+</div>

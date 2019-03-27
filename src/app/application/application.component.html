@@ -1,0 +1,81 @@
+<!--Header-->
+<div [ngClass]="!globals.showcurrentAgts ? 'msf-menu-header': 'ocultar'">
+    <div class="msf-menu-header-image-container">
+        <img (click)="goTo()" *ngIf="globals.showMenu || globals.showIntro"
+            src="../assets/images/logo_global_peqe.png" class="msf-menu-logo">
+            <!-- <img (click)="goTo()" *ngIf="globals.showMenu || globals.showIntro"
+                src="../../assets/images/logo_global_peqe.png" class="msf-menu-logo"> keivys-->
+        <div *ngIf="globals.showCategoryArguments || globals.showTabs" class="msf-menu-logo2 msf-menu-logo">
+            <div style="color: white; font-size: 14px; margin-bottom: 2%; width: 93%;">{{globals.labelCategory}}</div>
+            <div style="color: #01abec; font-size: 12px; width: 93%;">{{globals.currentOption.label}}</div>
+        </div>
+    </div>
+
+    <div class="msf-header-icons">
+         <!-- <img src="../../assets/images/ajustes.png" class="msf-menu-ajustes-icon" (click)="logOut()">  -->
+         <mat-icon class="msf-menu-ajustes-icon" (click)="logOut()" style="color: white" aria-label="add">exit_to_app</mat-icon>
+    </div>
+
+    <div class="msf-header-iconss">
+        <button *ngIf="globals.showMenu || globals.showIntro" class="mat-icon-menu" mat-icon-button
+            (click)="showMenu()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button *ngIf="globals.showCategoryArguments || globals.showTabs" class="mat-icon-menu" mat-icon-button
+            (click)="backMenu()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</div>
+
+<!--Iconos-->
+<div *ngIf="globals.dataSource && !globals.showMenu && !globals.showIntro && !globals.showCategoryArguments "
+    class="msf-menu-icon-container msf-menu-icons-container">
+    <!-- <button class="msf-menu-icon"><img src="../../assets/images/ExporttoExcel.png"
+            class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()"><span
+            class="msf-vertical-middle ocultar">Export Excel</span></button> keivys-->
+    <button class="msf-menu-icon"><img src="../assets/images/ExporttoExcel.png"
+        class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()"><span
+        class="msf-vertical-middle ocultar">Export Excel</span></button>
+        <button class="msf-menu-icon"><img src="../assets/images/CopytoClipboard.png"
+                class="msf-menu-image msf-vertical-middle"><span class="msf-vertical-middle ocultar">Export
+                PDF</span></button>
+    <!-- <button class="msf-menu-icon"><img src="../../assets/images/CopytoClipboard.png"
+            class="msf-menu-image msf-vertical-middle"><span class="msf-vertical-middle ocultar">Export
+            PDF</span></button> keivys-->
+</div>
+
+<!--body-->
+<div
+    [ngClass]="{'msf-menu-body-table': globals.showTabs && globals.dataSource,
+                    'msf-menu-body-Map': globals.showTabs && globals.map,
+                    'msf-menu-body msf-intro-img'  : !globals.showTabs && !globals.dataSource && !globals.showcurrentAgts,
+                    'msf-menu-body-component-active': !globals.showTabs && !globals.dataSource && globals.showcurrentAgts}">
+    
+    <!--nav-->
+    <div *ngIf="globals.showCategoryArguments" class="msf-menu-components-container-show msf-menu-component-responsive">
+        <div #categoryContainer class="msf-category-container">
+            <app-msf-component></app-msf-component>
+        </div>
+        <button [disabled]="disabled()"
+            [ngClass]="disabled() ? 'msf-menu-search-button-disabled msf-menu-button-responsive':'msf-menu-search-button-enabled msf-menu-button-responsive'"
+            (click)="search()">Search</button>
+
+    </div>
+    
+    <!--container-->
+    <div  [ngClass]="globals.showTabs && !globals.map  ? 'msf-menu-internal-content' : 'msf-menu-internal-content-transparent'">
+    <!-- <div  [ngClass]= "{'msf-menu-internal-content' : globals.showTabs && !globals.map,
+                       'msf-menu-internal-content-Map' : globals.showTabs && globals.map,
+                       'msf-menu-internal-content-transparent' : !globals.showTabs && !globals.map}"> -->
+        <app-msf-container #msfContainerRef></app-msf-container>
+    </div>
+    <div [ngClass]="globals.moreResultsBtn==true ? 'msf-menu-more-button' : 'msf-menu-more-button disabled-more-button'"
+        (click)="moreResults()" *ngIf="globals.showTabs && globals.dataSource">
+        <!-- <img style="width: 16px;height: 16px;" src="../../assets/images/more.png"
+            class="msf-menu-image msf-vertical-middle msf-line"> keivys-->
+        <img style="width: 16px;height: 16px;" src="../assets/images/more.png"
+        class="msf-menu-image msf-vertical-middle msf-line">
+        <div class="msf-vertical-middle msf-line" style="font-size: 13px">More Result</div>
+    </div>
+</div>

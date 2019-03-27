@@ -1,0 +1,40 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { Injectable } from '@angular/core';
+import { ApiClient } from '../api/api-client';
+var RegisterService = /** @class */ (function () {
+    function RegisterService(http) {
+        this.http = http;
+    }
+    RegisterService.prototype.getPlans = function (_this, successHandler, errorHandler) {
+        var url = '/getPlans';
+        //let url='http://localhost:8887/getPlans';
+        this.http.get(_this, url, successHandler, errorHandler, null);
+    };
+    RegisterService.prototype.getCountries = function (_this, successHandler, errorHandler) {
+        var url = '/getCountries';
+        //let url='http://localhost:8887/getCountries';
+        this.http.get(_this, url, successHandler, errorHandler, null);
+    };
+    RegisterService.prototype.checkEmail = function (_this, successHandler, errorHandler, email) {
+        var url = '/checkEmail?email=' + email;
+        //let url='http://localhost:8887/checkEmail?email='+email;
+        this.http.get(_this, url, successHandler, errorHandler, null);
+    };
+    RegisterService = __decorate([
+        Injectable({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [ApiClient])
+    ], RegisterService);
+    return RegisterService;
+}());
+export { RegisterService };
+//# sourceMappingURL=register.service.js.map

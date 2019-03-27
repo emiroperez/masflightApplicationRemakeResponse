@@ -1,0 +1,42 @@
+<div class="" [ngClass]="{
+  'menu-parent-option': option.children && option.children.length > 0,
+  'menu-child-option': option.children && option.children.length == 0
+}">
+  <!-- {{option.label}} -->
+
+  <!-- <mat-form-field class="msf-item menu-field" [ngClass]="{
+    'is-active': option.isActive,
+    'is-inactive': !option.isActive        
+  }">
+    <input readonly type="text" autocomplete="off" class="input-register" [(ngModel)]="option.label" [ngModelOptions]="{standalone: true}"
+      (click)="selectOption(option)">
+  </mat-form-field> -->
+  <div style="width: 84%; height: 40px;display: inline-block; vertical-align: middle !important;"class="msf-item menu-field" [ngClass]="{'is-active': option.isActive,'is-inactive': !option.isActive}">
+      <div (click)="selectOption(option)" class="msf-item-label menu-option-text">{{option.label}}</div>  
+  </div>
+  <button style="width: 16% !important; height: 40px !important; vertical-align: middle !important;" mat-icon-button (click)="toggle(option)" *ngIf="option.children && option.children.length > 0">
+      <mat-icon *ngIf="!option.isOpened" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
+      <mat-icon *ngIf="option.isOpened" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
+    </button>
+  <div [@animationOption2]="option.isOpened ? 'open': 'close'" *ngIf="option.children && option.children.length > 0 && option.isOpened">
+    <div class="dimension-menu" *ngFor="let optionChild of option.children">
+      <app-admin-menu-recursive [menu]="optionChild" (optionSelected)="selectOption($event)"></app-admin-menu-recursive>
+    </div>
+  </div>
+</div>
+<!-- dashboard
+<div class="">
+  <div style="width: 84%; height: 40px;display: inline-block; vertical-align: middle !important;"class="msf-item menu-field" [ngClass]="{'is-active': option.isActive,'is-inactive': !option.isActive}">
+      <div style="margin-top: 5%;" class="msf-item-label">{{dashboard.title}}</div>  
+  </div>
+  <button style="width: 16% !important; height: 40px !important; vertical-align: middle !important;" mat-icon-button (click)="goToDashboard(dashboard)"  style="vertical-align: super;">
+      <mat-icon *ngIf="!option.isOpened" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
+      <mat-icon *ngIf="option.isOpened" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
+    </button>
+  <div [@animationOption2]="option.isOpened ? 'open': 'close'" *ngIf="option.children && option.children.length > 0 && option.isOpened">
+    <div class="dimension-menu" *ngFor="let optionChild of option.children">
+      <app-admin-menu-recursive [menu]="optionChild" (optionSelected)="selectOption($event)"></app-admin-menu-recursive>
+    </div>
+  </div>
+</div>
+ -->

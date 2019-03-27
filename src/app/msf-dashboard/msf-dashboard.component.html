@@ -1,0 +1,107 @@
+<!-- <div *ngIf="globals.showIntro" class="msf-intro-body msf-intro-body-mobile"> -->
+  <!--header-->
+  <!-- <div class="msf-intro-body-enc">
+    <div style="width: calc(100% - 58px);">
+      <div class="msf-intro-welcome">Welcome, Administrator</div>
+      <div style="font-weight: lighter; font-size: 65%;">Last time: jan 31, 2019 4:00 pm</div>
+    </div>
+    <div>
+      <img src="../assets/images/pulse_welc.png" class="msf-intro-div-image">
+    </div>
+  </div> -->
+  <!--header-->
+  <!-- <div class="msf-intro-body-body">kp26032019 -->
+    <!--dashboard-->
+    <div class="msf-dashboard-container" [style.height]="screenHeight">
+      <div class="msf-dashboard-title">{{globals.currentDashboardMenu.title}}</div>
+      <ng-container *ngIf="dashboardColumns.length">
+        <div class="msf-dashboard-chartbox">
+          <div class="msf-dashboard-chartbox-column"
+            *ngFor="let dashboardColumn of dashboardColumns; let column = index" [attr.data-index]="column">
+            <!-- <div class="msf-dashboard-chartbox-items"> -->
+            <!-- <div class="msf-dashboard-chartbox-column"> -->
+            <div class="msf-dashboard-chartbox-item" [style.width.%]="getPanelWidth(column, row)"
+              *ngFor="let dashboardChart of dashboardColumn; let row = index" [attr.data-index]="row">
+              <!-- <div class="msf-dashboard-button">
+                <mat-icon class="msf-dashboard-button-icon" aria-label="close" (click)="removeChart(column, row)">close</mat-icon>
+              </div> -->
+              <!--
+              <div *ngIf="row" (mousedown)='onLineClick($event, column, row, resizePanelsFromLeft)' id='msf-dashboard-panel-left-resize' class='msf-dashboard-panel-line-resize'></div>
+              <div *ngIf="row != dashboardColumn.length - 1" (mousedown)='onLineClick($event, column, row, resizePanelsFromRight)' id='msf-dashboard-panel-right-resize' class='msf-dashboard-panel-line-resize'></div>
+              -->
+              <app-msf-dashboard-chartmenu [values]="dashboardChart" [panelHeight]="getColumnHeight(column)"
+                [columnPos]="column" [rowPos]="row"></app-msf-dashboard-chartmenu>
+            </div>
+            <!-- </div> -->
+            <!-- <div [ngClass]="dashboardColumnsProperties[column] ? 'msf-dashboard-panel-size-properties-open' : 'msf-dashboard-panel-size-properties-closed'">
+            <div *ngIf="!dashboardColumnsProperties[column]" (click)="toggleColumnProperties(column)" class="msf-dashboard-button" style="width: 0">
+              <mat-icon class="msf-dashboard-button-icon" style="padding-right: 0; padding-top: 0" aria-label="fold">keyboard_arrow_down</mat-icon>
+            </div>
+            <ng-container *ngIf="dashboardColumnsProperties[column]">
+              <div class="msf-dashboard-column-properties-align">
+                <span class="msf-dashboard-column-properties-height-label">Height:</span>
+                <mat-form-field class="msf-dashboard-column-properties-form-field">
+                  <mat-select [(ngModel)]="dashboardColumns[column][0].height" style="text-align: center" (selectionChange)="changePanelHeight(column, $event.value)">
+                    <mat-option *ngFor="let heightValue of heightValues" [value]="heightValue">
+                      {{heightValue.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <ng-container *ngIf="dashboardColumn.length > 1">
+                <div class="msf-dashboard-column-properties-align" *ngFor="let dashboardChart of dashboardColumn; let row = index">
+                  <span class="msf-dashboard-column-properties-width-label">Width (Chart #{{row + 1}}):</span>
+                  <mat-form-field class="msf-dashboard-column-properties-form-field">
+                    <mat-select [(ngModel)]="dashboardColumns[column][row].width" style="text-align: center" (selectionChange)="resizePanels(column, row)">
+                      <mat-option *ngFor="let widthValue of widthValues | panelSizeFilter: (dashboardColumns[column].length == 3 ? threePanelsFilterArgs : twoPanelsFilterArgs)" [value]="widthValue">
+                        {{widthValue.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </ng-container>
+              <div class="msf-dashboard-column-properties-align" *ngIf="dashboardColumn.length <= 2">
+                <ng-container>
+                  <div class="msf-dashboard-column-properties-button">
+                    <button mat-flat-button class="flat-button" (click)="addChartInColumn(column, 1)">Add 1 panel</button>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="dashboardColumn.length == 1">
+                  <div class="msf-dashboard-column-properties-button">
+                    <button mat-flat-button class="flat-button" (click)="addChartInColumn(column, 2)">Add 2 panels</button>
+                  </div>
+                </ng-container>
+              </div>
+              <div (click)="toggleColumnProperties(column)" class="msf-dashboard-button" style="width: 0">
+                <mat-icon class="msf-dashboard-button-icon" style="padding-right: 0; padding-top: 0" aria-label="fold">keyboard_arrow_up</mat-icon>
+              </div>
+            </ng-container>
+          </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </ng-container>
+      <div class="msf-dashboard-empty" *ngIf="!dashboardColumns.length">
+        You have not added any chart.<br>
+        Click here to start!
+      </div>
+      <!-- <div class="msf-dashboard-addmenu">
+    <div class="msf-dashboard-addmenu-item" (click)="toggleDisplayAddChartMenu()">
+      <div class="msf-dashboard-addmenu-item-text">
+        <mat-icon class="msf-dashboard-icon" aria-label="add">add</mat-icon>
+        <span class="msf-dashboard-addmenu-item-addtext">ADD PANELS</span>
+      </div>
+    </div>
+    <div class="msf-dashboard-addmenu-item" *ngIf="displayAddChartMenu">
+      <div class="msf-dashboard-addmenu-item-text" (click)="addChart(1)">1 Panel</div>
+    </div>
+    <div class="msf-dashboard-addmenu-item" *ngIf="displayAddChartMenu">
+      <div class="msf-dashboard-addmenu-item-text" (click)="addChart(2)">2 Panels</div>
+    </div>
+    <div class="msf-dashboard-addmenu-item" *ngIf="displayAddChartMenu">
+      <div class="msf-dashboard-addmenu-item-text" (click)="addChart(3)">3 Panels</div>
+    </div>
+  </div> -->
+    </div>
+  <!-- </div>kp26032019 -->
+<!-- </div>kp26032019 -->

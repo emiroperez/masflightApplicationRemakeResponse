@@ -1,0 +1,23 @@
+<div class="menu-nav-container" *ngIf="globals.showMenu" >
+    <div class="dimension-menu" *ngFor="let option of menu_nav" style="color: white">
+        <app-admin-menu-recursive [menu]="option" (optionSelected)="getOptionSelected($event)"></app-admin-menu-recursive>
+    </div>
+<!-- dashboard -->
+    <div class="dimension-menu" style="color: white">
+        <div class="">
+            <div style="width: 84%; height: 40px;display: inline-block; vertical-align: middle !important;"class="msf-item menu-field">
+                <div style="margin-top: 5%;" class="msf-item-label">Dashboard</div>  
+            </div>
+            <button style="width: 16% !important; height: 40px !important; vertical-align: middle !important;" mat-icon-button style="vertical-align: super;" (click)="toggle(globals.OptionDashboard)">
+                <mat-icon *ngIf="!globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
+              </button>
+            <div *ngIf="globals.OptionDashboard">
+              <div class="dimension-menu" *ngFor="let optionChild of dashboards">
+                <app-menu-recursive-dashboard [menu]="optionChild" (optionSelected)="selectOption($event)"></app-menu-recursive-dashboard>
+              </div>
+            </div>
+          </div>
+    </div>
+
+</div> 

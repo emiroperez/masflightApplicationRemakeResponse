@@ -1,0 +1,53 @@
+  <mat-form-field class="msf-width-20 padding-5">
+      <mat-select placeholder="" [(ngModel)]="currentMapType" (selectionChange)="mapTypeChange($event.value)">
+          <mat-option *ngFor="let mapType of mapTypes" [value]="mapType">
+          {{mapType.name}}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+  <mgl-map *ngIf="currentMapType.id == 'point'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()">      
+    <ng-container *ngFor="let feature of data; let i = index ">
+        <mgl-marker  [lngLat]="[feature.features[0].origin.longitude, feature.features[0].origin.latitude]">
+            <div style="justify-content: center; color: #01abec">            
+              {{feature.features[0].origin.iata}}
+            </div>
+        </mgl-marker> 
+        <mgl-marker  [lngLat]="[feature.features[0].dest.longitude, feature.features[0].dest.latitude]">
+            <div style="justify-content: center; color: #01abec">            
+              {{feature.features[0].dest.iata}}
+            </div>
+        </mgl-marker>            
+        <mgl-geojson-source *ngIf="feature" id="feature_{{i}}" [data]="feature"></mgl-geojson-source>
+        <mgl-layer *ngIf="feature"  id="feature_{{i}}" type="circle" source="feature_{{i}}" [paint]="paint"></mgl-layer>          
+    </ng-container>
+  </mgl-map>
+
+  <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()">
+    <mgl-layer
+      id="route"
+      type="line"
+      [source]="{
+        'type': 'geojson',
+        'data': {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+                'type': 'LineString',
+                'coordinates': coordinates
+            }
+        }
+      }"
+      [layout]="{
+        'line-join': 'round',
+        'line-cap': 'round'
+      }"
+      [paint]="{
+        'line-color': '#B42222',
+        'line-width': 4
+      }"
+    >
+    </mgl-layer>
+  </mgl-map>
+
+  <div id="chartdiv" [style.width.%]="100" [style.height.%]="40" style="display: block;background-color: #000; color: #fff;"></div>
+     
