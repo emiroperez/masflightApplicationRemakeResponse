@@ -2613,8 +2613,8 @@ img.msf-calendar-image
     width: 100%
 
 .menu-option-text
-    height: 40px
-    line-height: 40px
+    height: 60px
+    line-height: 60px
     white-space: nowrap
     padding-left: 4%
 
@@ -2623,6 +2623,28 @@ img.msf-calendar-image
 
 .menu-child-option
     background-color: #3d3d3d
+
+.menu-option-label
+    width: 84%
+    height: 60px
+    display: inline-block
+    vertical-align: middle !important
+
+.menu-option-button
+    width: 16% !important
+    height: 60px !important
+    vertical-align: middle !important
+
+.menu-option-container
+
+.menu-option-container-first-line
+    border-bottom: 1px solid #171717
+
+.menu-option-container-second-line
+    border-bottom: 1px solid #4a4a4a
+
+.menu-opened
+    border-left: 4px solid $msf-secondary-color
 
 div[id^="msf-dashboard-chart-display"]
     font-size: .7em !important
@@ -3080,8 +3102,7 @@ div[id^="msf-dashboard-chart-display"]
     
     .menu-nav-container
         height: 100%
-        width: 100%
-        padding-left: 3%
+        width: calc(100% + 3%)
         overflow-y: Scroll
         background-color: #333333
 
@@ -3112,10 +3133,6 @@ div[id^="msf-dashboard-chart-display"]
         
     .dimension-menu
         max-width: 100%
-        border-bottom: 1px solid
-        /*margin: 0% 3% 0% 5% !important*/
-        margin: 0% 2% 0% 2% !important
-        border-color: #585858
     
     .msf-intro-img 
         background-image: url("assets/images/fondo3.png") !important  

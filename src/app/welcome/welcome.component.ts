@@ -81,9 +81,9 @@ export class WelcomeComponent implements OnInit {
   };
 
   ngOnInit() {
-  this.UserService.validarUsuario(this, this.handlerGetSuccessData); //para subir
-  // this.globals.isLoading = true;
-  // this.getApplications();
+  //this.UserService.validarUsuario(this, this.handlerGetSuccessData); //para subir
+    this.globals.isLoading = true;
+    this.getApplications();
   }
 
   
