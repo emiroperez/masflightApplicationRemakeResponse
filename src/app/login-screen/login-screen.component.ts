@@ -95,7 +95,9 @@ export class LoginScreenComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getUserLoggedIn();
+    if (this.globals.baseUrl != "http://localhost:8887"){
+      this.getUserLoggedIn();//para subir
+    } 
   }
 
   getUserLoggedIn(){
