@@ -6,20 +6,29 @@
     </div>
 <!-- dashboard -->
     <div class="dimension-menu" style="color: white">
-        <div class="">
-            <div class="msf-item menu-field menu-option-label">
-                <div style="margin-top: 5%;" class="msf-item-label">Dashboard</div>  
-            </div>
-            <button class="menu-option-button" mat-icon-button style="vertical-align: super;" (click)="toggle(globals.OptionDashboard)">
-                <mat-icon *ngIf="!globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
-                <mat-icon *ngIf="globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
+      <div [ngClass]="{
+        'menu-opened': globals.OptionDashboard
+      }">
+          <div class="menu-option-container" [ngClass]="{
+            'menu-parent-option': globals.OptionDashboard
+          }">
+              <div class="msf-item menu-field menu-option-label">
+                  <div class="msf-item-label menu-option-text">Dashboard</div>  
+              </div>
+              <button class="menu-option-button" mat-icon-button style="vertical-align: super;" (click)="toggle(globals.OptionDashboard)">
+                  <mat-icon *ngIf="!globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
+                  <mat-icon *ngIf="globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
               </button>
-            <div *ngIf="globals.OptionDashboard">
-              <div class="dimension-menu" *ngFor="let optionChild of dashboards">
-                <app-menu-recursive-dashboard [menu]="optionChild" (optionSelected)="selectOption($event)"></app-menu-recursive-dashboard>
+              <div class="menu-option-container-first-line"></div>
+              <div class="menu-option-container-second-line"></div>
+              <div *ngIf="globals.OptionDashboard">
+                <div class="dimension-menu" *ngFor="let optionChild of dashboards">
+                  <app-menu-recursive-dashboard [menu]="optionChild" (optionSelected)="selectOption($event)"></app-menu-recursive-dashboard>
+                </div>
               </div>
             </div>
-          </div>
+      </div>
+        
     </div>
 
-</div> 
+</div>

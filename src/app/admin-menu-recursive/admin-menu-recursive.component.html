@@ -1,22 +1,9 @@
 <div class="" [ngClass]="{
   'menu-opened': option.isOpened
 }">
-<!--
-  <div class="" [ngClass]="{
-  'menu-parent-option': option.children && option.children.length > 0,
-  'menu-child-option': option.children && option.children.length == 0
-}">
--->
-  <!-- {{option.label}} -->
-
-  <!-- <mat-form-field class="msf-item menu-field" [ngClass]="{
-    'is-active': option.isActive,
-    'is-inactive': !option.isActive        
+  <div class="menu-option-container" [ngClass]="{
+    'menu-parent-option': option.isOpened
   }">
-    <input readonly type="text" autocomplete="off" class="input-register" [(ngModel)]="option.label" [ngModelOptions]="{standalone: true}"
-      (click)="selectOption(option)">
-  </mat-form-field> -->
-  <div class="menu-option-container">
     <div class="msf-item menu-field menu-option-label" [ngClass]="{'is-active': option.isActive,'is-inactive': !option.isActive}">
       <div (click)="selectOption(option)" class="msf-item-label menu-option-text">{{option.label}}</div>  
     </div>

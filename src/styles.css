@@ -2951,7 +2951,7 @@ img.msf-calendar-image {
 
 .menu-opened {
   border-left: 4px solid #01abec;
-  border-top: 4px solid #01abec;
+  background-color: #3e3e3e;
 }
 
 div[id^=msf-dashboard-chart-display] {
