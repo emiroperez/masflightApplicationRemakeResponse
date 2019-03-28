@@ -24,16 +24,13 @@ export class MobileMenuService {
     }
     url = url + "appId="+_this.globals.currentApplication.id;
     _this.globals.isLoading = true;
-    if (_this.globals.baseUrl == "http://localhost:8887"){
-    this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
-    }else{
     this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
-  }
   }
 
   createAuthorizationHeader() {
     httpOptions.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    httpOptions.headers = httpOptions.headers.append(this.SECURITY_HEADER, localStorage.getItem(this.TOKEN_STORAGE_KEY));
+    // httpOptions.headers = httpOptions.headers.append(this.SECURITY_HEADER, localStorage.getItem(this.TOKEN_STORAGE_KEY));
+    httpOptions.headers = httpOptions.headers.append('Authorization', localStorage.getItem('token'));
   }
 
   get = function (_this,url,successHandler, errorHandler){
@@ -48,19 +45,12 @@ export class MobileMenuService {
 
   getDashboardsByUser(_this, successHandler, errorHandler){
     let url = "/getDashboards?application=" + _this.globals.currentApplication.id;
-
-    if (_this.globals.baseUrl == "http://localhost:8887" )
-      this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
-    else
       this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
   }
 
   
   getAdvanceFeatures(_this, successHandler, errorHandler){
     let url = "/getPlanAdvanceFeatures";
-    if (_this.globals.baseUrl == "http://localhost:8887")
-      this.get (_this, _this.globals.baseUrl + url, successHandler, errorHandler);
-    else
       this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
   }
 }

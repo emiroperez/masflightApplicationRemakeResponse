@@ -47,7 +47,8 @@ export class UserService {
 
   createAuthorizationHeader() {
     httpOptions.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    httpOptions.headers = httpOptions.headers.append(this.SECURITY_HEADER, localStorage.getItem(this.TOKEN_STORAGE_KEY));
+    // httpOptions.headers = httpOptions.headers.append(this.SECURITY_HEADER, localStorage.getItem(this.TOKEN_STORAGE_KEY));
+    httpOptions.headers = httpOptions.headers.append('Authorization', localStorage.getItem('token'));
   }
 
   //  get = function (_this,url,successHandler){
