@@ -1,7 +1,7 @@
 <div class="menu-opened">
   <div class="menu-option-container">
     <div class="msf-item menu-field menu-option-label" [ngClass]="{'is-active': option.isActive,'is-inactive': !option.isActive}">
-      <div (click)="selectOption(option)" class="msf-item-label menu-option-text">{{option.title}}</div>  
+      <div (click)="goToDashboard(option)" class="msf-item-label menu-option-text">{{option.title}}</div>  
     </div>
     <div class="menu-option-container-first-line"></div>
     <div class="menu-option-container-second-line"></div>

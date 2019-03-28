@@ -5,6 +5,7 @@ import { WelcomeService } from '../services/welcome.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 import { UserService } from '../services/user.service';
+import { ApplicationService } from '../services/application.service';
 
 
 
@@ -73,7 +74,11 @@ export class WelcomeComponent implements OnInit {
 
 
 
-  constructor(public globals: Globals, private service: WelcomeService,private router: Router,private UserService: UserService) {     
+  constructor(public globals: Globals,
+     private service: WelcomeService,
+     private router: Router,
+     private UserService: UserService,
+     private appService: ApplicationService ) {     
   }
 
   setState(option){
@@ -81,9 +86,12 @@ export class WelcomeComponent implements OnInit {
   };
 
   ngOnInit() {
-  //this.UserService.validarUsuario(this, this.handlerGetSuccessData); //para subir
-    this.globals.isLoading = true;
-    this.getApplications();
+    //if (this.globals.baseUrl == "http://localhost:8887"){
+      this.globals.isLoading = true;
+      this.getApplications();
+    /*}else{
+      this.UserService.validarUsuario(this, this.handlerGetSuccessData); //para subir
+    }*/
   }
 
   
@@ -150,5 +158,15 @@ export class WelcomeComponent implements OnInit {
     var aux = option.name;
     aux = aux.replace(" ","");
     return "assets/images/w_"+aux+".png"
+  } 
+  
+  logOut(){
+    this.appService.confirmationDialog (this, "Are you sure you want to Log Out?",
+      function (_this)
+      {
+        _this.globals.isLoading = false;
+        window.localStorage.removeItem("token");
+        _this.router.navigate(['']);
+      });
   }
 }
