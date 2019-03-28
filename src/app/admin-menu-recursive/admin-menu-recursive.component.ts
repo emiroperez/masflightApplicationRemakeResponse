@@ -63,7 +63,8 @@ export class AdminMenuRecursiveComponent implements OnInit {
   }
 
   selectOption(option) {    
-    this.optionSelected.emit(option);    
+    this.optionSelected.emit(option); 
+    this.toggle(option)   
   }
 
   changeDivState(option) {
