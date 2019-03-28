@@ -907,12 +907,14 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .ng-select .ng-select-container .ng-value-container .ng-placeholder {
   color: #5b5b5f;
   /*  pending register
+  *
   *      padding-left: 15px*/
 }
 
 .ng-select .ng-has-value .ng-placeholder, .ng-select.ng-select-opened .ng-placeholder {
   color: white !important;
   /**register pending
+  *
   *  padding-left: 22px!important*/
 }
 
@@ -922,6 +924,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
   /**register pending
+  *
   *  padding-left: 17px*/
 }
 
@@ -3362,18 +3365,14 @@ div[id^=msf-dashboard-chart-display] {
 /*cellphone*/
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .login-card {
-    max-width: 240px !important;
+    max-width: 275px !important;
     position: absolute !important;
     left: 50%;
     top: 50%;
     margin: 0;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
-    padding: 50px 30px !important;
-  }
-
-  .login-header-image {
-    width: 90% !important;
+    padding: 50px 15px !important;
   }
 
   .with_img {
@@ -3421,6 +3420,7 @@ div[id^=msf-dashboard-chart-display] {
   }
 
   /*.msf-nav, .msf-menu-container, .msf-menu-icons-container, .msf-display, .msf-menu-nav
+  *
   *  display: none  !important  */
   .msf-menu-body {
     height: calc(100% - 60px);
@@ -3478,6 +3478,7 @@ div[id^=msf-dashboard-chart-display] {
   }
 
   /*.msf-menu-internal-content-Map
+  *
   *  height: 100%*/
   .msf-menu-content-whith-nav {
     width: 100%;
@@ -3595,8 +3596,10 @@ div[id^=msf-dashboard-chart-display] {
   }
 
   /*.msf-menu-icon 
+  *
   *  margin-right: 20px */    
   /*.msf-menu-components-container-show      
+  *
   *  overflow: hidden*/
   .mat-datepicker-popup {
     bottom: auto !important;
