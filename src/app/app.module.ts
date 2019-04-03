@@ -146,6 +146,15 @@ import { MsfTopNumberComponent } from './msf-top-number/msf-top-number.component
 import { MsfConfirmationDialogComponent } from './msf-confirmation-dialog/msf-confirmation-dialog.component';
 import { MenuRecursiveDashboardComponent } from './menu-recursive-dashboard/menu-recursive-dashboard.component';
 
+import { MsfTotalTypeComponent } from './msf-total-type/msf-total-type.component';
+import { MsfGroupingCompGenreComponent } from './msf-grouping-comp-genre/msf-grouping-comp-genre.component';
+import { MsfGroupingCompTotalComponent } from './msf-grouping-comp-total/msf-grouping-comp-total.component';
+import { MsfGroupingOpComponent } from './msf-grouping-op/msf-grouping-op.component';
+import { MsfGroupingOp2Component } from './msf-grouping-op2/msf-grouping-op2.component';
+import { MsfStatesComponent } from './msf-states/msf-states.component';
+import { MsfFlightDurationSegmentsComponent } from './msf-flight-duration-segments/msf-flight-duration-segments.component';
+import { MsfMoreInfoPopupComponent } from './msf-more-info-popup/msf-more-info-popup.component';
+import { IntroWelcomeComponent } from './intro-welcome/intro-welcome.component';
 
 @NgModule({
   declarations: [
@@ -273,7 +282,18 @@ import { MenuRecursiveDashboardComponent } from './menu-recursive-dashboard/menu
     MsfGroupingMariadbComponent,
     MsfConfirmationDialogComponent,
     MsfContentTypeComponent,
-    MenuRecursiveDashboardComponent
+    MenuRecursiveDashboardComponent,
+  
+    MsfTotalTypeComponent,
+    MsfGroupingCompGenreComponent,
+    MsfGroupingCompTotalComponent,
+    MsfGroupingOpComponent,
+    MsfGroupingOp2Component,
+    MsfStatesComponent,
+    MsfFlightDurationSegmentsComponent,    
+    MsfMoreInfoPopupComponent, IntroWelcomeComponent
+
+    
   ],
   imports: [
     BrowserModule,
@@ -326,6 +346,6 @@ import { MenuRecursiveDashboardComponent } from './menu-recursive-dashboard/menu
     Utils
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MessageComponent, MsfDynamicTableVariablesComponent,/* EditCategoryArgumentDialog,*/ MsfConfirmationDialogComponent,]
+  entryComponents: [MessageComponent, MsfDynamicTableVariablesComponent,/* EditCategoryArgumentDialog,*/ MsfConfirmationDialogComponent,MsfMoreInfoPopupComponent]
 })
 export class AppModule { }

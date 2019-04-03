@@ -1,6 +1,6 @@
 
   <!--body-->
-  <div class="msf-intro-body msf-intro-body-mobile">
+  <div *ngIf="globals.showIntro" class="msf-intro-body msf-intro-body-mobile">
         <div class="msf-intro-body-enc">
             <div style="width: calc(100% - 58px);">
                 <div class="msf-intro-welcome">Welcome, Administrator</div>
@@ -10,9 +10,16 @@
                 <img src="../assets/images/pulse_welc.png" class="msf-intro-div-image">               
             </div>
         </div>
-        <div  class="msf-intro-body-body">         
+        <div  *ngIf="globals.currentOption != 'dashboard'"   class="msf-intro-body-body"> 
+            <div *ngFor="let desc of content" style="margin: 0% 8% 0% 4%">
+                <app-intro-welcome [content]="desc"></app-intro-welcome> 
+            </div>        
+            
+        </div>
+        <div *ngIf="globals.currentOption === 'dashboard'"  class="msf-intro-body-body">     
             <!-- <app-msf-dashboard *ngIf="globals.currentOption === 'dashboard'"></app-msf-dashboard> -->
             <!-- <app-msf-dashboard></app-msf-dashboard> -->
+            <!-- <app-option-welcome></app-option-welcome>  -->
             <app-msf-dashboard [currentDashboardMenu]="globals.currentDashboardMenu.id" *ngIf="globals.currentOption === 'dashboard'"></app-msf-dashboard>
         </div>
     </div>

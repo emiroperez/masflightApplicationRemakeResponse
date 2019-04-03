@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Globals } from '../globals/Globals';
+import { ApplicationService } from '../services/application.service';
 
 @Component({
   selector: 'app-intro',
@@ -8,9 +9,25 @@ import { Globals } from '../globals/Globals';
 })
 export class IntroComponent implements OnInit {
 
-  constructor(public globals: Globals) { }
+  content: any[] = [];
+
+  constructor(public globals: Globals,private appService: ApplicationService) { }
 
   ngOnInit() {
+    this.appService.getWelcomeApplication(this,this.handlerSuccess,this.handlerError);
   }
+
+  handlerSuccess(_this, data) {
+    _this.content = data;
+    _this.globals.isLoading = false;
+    console.log( _this.content)
+  }
+
+  handlerError(_this, result) {
+    console.log(result);
+    _this.globals.isLoading = false;
+  }
+
+  
 
 }

@@ -135,8 +135,8 @@ export class Utils{
              || type == ComponentType.filterAirlineType || type == ComponentType.fareIncrements || type == ComponentType.fareIncrementMiddle
              || type == ComponentType.fareIncrementMax ||  type == ComponentType.percentIncrement || type == ComponentType.quarterHour 
              || type == ComponentType.stops || type == ComponentType.circuityType || type == ComponentType.circuity
-             || type == ComponentType.groupingHubSummaries || type == ComponentType.groupingDailyStatics || type == ComponentType.groupingOperationsSummary
-             || type == ComponentType.fareIncrementsMarketHistograms|| type == ComponentType.sortingNostop || type == ComponentType.sortingConnectionBuilder){
+             || type == ComponentType.groupingHubSummaries || type == ComponentType.groupingDailyStatics || type == ComponentType.groupingOperationsSummary || type == ComponentType.groupingOpSum
+             || type == ComponentType.groupingOpSum2 || type == ComponentType.fareIncrementsMarketHistograms|| type == ComponentType.sortingNostop || type == ComponentType.sortingConnectionBuilder){
             if(typeof value === "string"){
                 return value;
             }
@@ -235,7 +235,7 @@ export class Utils{
                 i++;
             }
             return valueAux;
-          }else if (type == ComponentType.groupingAthena || type == ComponentType.groupingMariaDB){
+          }else if (type == ComponentType.groupingAthena || type == ComponentType.groupingMariaDB || type == ComponentType.groupingCompGenre || type == ComponentType.groupingCompTotal){
             var valueAux="";
             var i = 0;
             for(var val of value){
@@ -247,7 +247,7 @@ export class Utils{
                 i++;
             }
             return valueAux;
-        }else if (type == ComponentType.selectBoxMultipleOption){
+        }else if (type == ComponentType.selectBoxMultipleOption || type == ComponentType.totalType || type == ComponentType.flightSegments || type == ComponentType.states){
                 var valueAux="";
                 var i = 0;
                 for(var val of value){
@@ -304,8 +304,8 @@ export class Utils{
                  || type == ComponentType.filterAirlineType || type == ComponentType.fareIncrements || type == ComponentType.fareIncrementMiddle
                  || type == ComponentType.fareIncrementMax || type == ComponentType.percentIncrement || type == ComponentType.quarterHour
                  || type == ComponentType.stops || type == ComponentType.circuityType || type == ComponentType.circuity
-                 || type == ComponentType.groupingHubSummaries || type == ComponentType.groupingDailyStatics || type == ComponentType.groupingOperationsSummary
-                 || type == ComponentType.fareIncrementsMarketHistograms|| type == ComponentType.sortingNostop || type == ComponentType.sortingConnectionBuilder){
+                 || type == ComponentType.groupingHubSummaries || type == ComponentType.groupingDailyStatics || type == ComponentType.groupingOperationsSummary|| type == ComponentType.groupingOpSum
+                 || type == ComponentType.groupingOpSum2 || type == ComponentType.fareIncrementsMarketHistograms|| type == ComponentType.sortingNostop || type == ComponentType.sortingConnectionBuilder){
                 if(typeof value === "string"){
                     return value;
                 }
@@ -363,7 +363,7 @@ export class Utils{
                 i++;
             }
             return valueAux;
-          }else if (type == ComponentType.groupingAthena|| type == ComponentType.groupingMariaDB){
+          }else if (type == ComponentType.groupingAthena|| type == ComponentType.groupingMariaDB || type == ComponentType.groupingMariaDB || type == ComponentType.groupingCompGenre || type == ComponentType.groupingCompTotal){
             var valueAux="";
             var i = 0;
             for(var val of value){
@@ -391,7 +391,7 @@ export class Utils{
                 i++;
             }
             return valueAux;
-        }else if (type == ComponentType.selectBoxMultipleOption){
+        }else if (type == ComponentType.selectBoxMultipleOption || type == ComponentType.totalType){
                 var valueAux="";
                 var i = 0;
                 for(var val of value){
@@ -421,7 +421,7 @@ export class Utils{
                  return '';
              }
             return value.name;
-        }else if (type == ComponentType.selectBoxMultipleOption){
+        }else if (type == ComponentType.selectBoxMultipleOption|| type == ComponentType.totalType || type == ComponentType.flightSegments || type == ComponentType.states){
             var valueAux="";
             var i = 0;
             for(var val of value){
@@ -449,7 +449,6 @@ export class Utils{
             return value;
         }
     };
-
 
     getDateFormat(value, format){
         if(value != null){

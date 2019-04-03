@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, Input ,ChangeDetectorRef, ElementRef} from '@angular/core';
-import {MatSort, MatTableDataSource, MatTab, Sort} from '@angular/material';
+import {MatSort, MatTableDataSource, MatTab, Sort, MatDialog} from '@angular/material';
 import { Globals } from '../globals/Globals';
 import { ApplicationService } from '../services/application.service';
 import { MsfGroupingComponent } from '../msf-grouping/msf-grouping.component';
 import { Utils } from '../commons/utils';
+import { MsfMoreInfoPopupComponent } from '../msf-more-info-popup/msf-more-info-popup.component';
 
 
 
@@ -38,6 +39,8 @@ export class MsfTableComponent implements OnInit {
 
   groupingArgument;
 
+  limitNumber;
+
   sortingArgument;
   
   sortedData: any[];
@@ -46,7 +49,7 @@ export class MsfTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   @ViewChild('TABLE') table: ElementRef;
- constructor(public globals: Globals, private service: ApplicationService,private ref: ChangeDetectorRef) { }
+ constructor(public globals: Globals, private service: ApplicationService,private ref: ChangeDetectorRef,public dialog: MatDialog) { }
 
   ngOnInit() {      
     // this.dataSource.sort = this.sort;  
@@ -77,14 +80,20 @@ export class MsfTableComponent implements OnInit {
                 if(element2.type=="groupingOperationsSummary"){
                   this.groupingArgument = element2;
                 }
-                // if(element2.type=="groupingHubSummaries"){
-                //   this.groupingArgument = element2;
-                // }
                 if(element2.type=="groupingDailyStatics"){
                   this.groupingArgument = element2;
                 }
                 if(element2.type=="groupingMariaDB"){
                   this.groupingArgument = element2;
+                }
+                if(element2.type=="groupingCompTotal"){
+                  this.groupingArgument = element2;
+                }
+                if(element2.type=="groupingCompGenre"){
+                  this.groupingArgument = element2;
+                }
+                if(element2.name1=="limitNumber"){
+                  this.limitNumber = element2;
                 }
             });
             }
@@ -97,7 +106,61 @@ export class MsfTableComponent implements OnInit {
       var array2 =null;
         if(this.groupingArgument!=null){
            array = this.groupingArgument.value1;
-        }
+           if(array!=null){
+            if(array.length!=0){
+              if(this.groupingArgument.type=="groupingMariaDB" && this.globals.currentOption.id==166){
+                displayedColumns.unshift({ columnType:"number",
+                columnName:"AVG_RT_Minutes",
+                columnLabel:"Avg Rt Minutes",
+                drillDowns: []});
+                displayedColumns.unshift({ columnType:"number",
+                columnName:"AVG_Play_Duration",
+                columnLabel:"Avg Play Duration",
+                drillDowns: []});
+                displayedColumns.unshift({ columnType:"number",
+                columnName:"SUM_RT_Minutes",
+                columnLabel:"Sum Rt Minutes",
+                drillDowns: []});
+                displayedColumns.unshift({ columnType:"number",
+                columnName:"SUM_Play_Duration",
+                columnLabel:"Sum Play Duration",
+                drillDowns: []});
+                displayedColumns.unshift({ columnType:"number",
+                columnName:"SUM_Unique_Hits",
+                columnLabel:"Sum Unique Hits",
+                drillDowns: []});
+              }
+            }else{
+              var aux = displayedColumns.slice();
+              var cont = 0;
+              for (let index = 0; index < displayedColumns.length; index++) {
+                const element = displayedColumns[index];
+                var x = index;
+                if(element.function==0){
+                  x = x-cont;
+                  aux.splice(x,1);
+                  cont++;
+                }
+              }
+              displayedColumns = aux;
+              this.globals.displayedColumns = displayedColumns;
+            }
+           }else{
+            var aux = displayedColumns.slice();
+            var cont = 0;
+            for (let index = 0; index < displayedColumns.length; index++) {
+              const element = displayedColumns[index];
+              var x = index;
+              if(element.function==0){
+                x = x-cont;
+                aux.splice(x,1);
+                cont++;
+              }
+            }
+            displayedColumns = aux;
+            this.globals.displayedColumns = displayedColumns;
+          }
+      }
         if(this.sortingArgument!=null){
            array2 = this.sortingArgument.value1;
         }
@@ -108,7 +171,8 @@ export class MsfTableComponent implements OnInit {
           if(indexColumn==-1){
             displayedColumns.unshift({ columnType:"string",
             columnName:element.columnName,
-            columnLabel:element.columnLabel});
+            columnLabel:element.columnLabel,
+            drillDowns: []});
           }
         }
     }
@@ -120,32 +184,15 @@ export class MsfTableComponent implements OnInit {
           if(indexColumn==-1){
             displayedColumns.unshift({ columnType:"string",
             columnName:element.columnName,
-            columnLabel:element.columnLabel});
+            columnLabel:element.columnLabel,
+            drillDowns: []
+          });
           }else{
-            // if(element.columnName=="Marketing_Carrier"){
               displayedColumns.splice(indexColumn,1);
               displayedColumns.unshift({ columnType:"string",
               columnName:element.columnName,
-              columnLabel:element.columnLabel});
-            // }
-            // if(element.columnName=="MktCar"){
-            //   displayedColumns.splice(indexColumn,1);
-            //   displayedColumns.unshift({ columnType:"string",
-            //   columnName:element.columnName,
-            //   columnLabel:element.columnLabel});
-            // }
-            // if(element.columnName=="Origin"){
-            //   displayedColumns.splice(indexColumn,1);
-            //   displayedColumns.unshift({ columnType:"string",
-            //   columnName:element.columnName,
-            //   columnLabel:element.columnLabel});
-            // }
-            // if(element.columnName=="Destination"){
-            //   displayedColumns.splice(indexColumn,1);
-            //   displayedColumns.unshift({ columnType:"string",
-            //   columnName:element.columnName,
-            //   columnLabel:element.columnLabel});
-            // }
+              columnLabel:element.columnLabel,
+              drillDowns: []});
           }
         }
       }else{
@@ -153,37 +200,20 @@ export class MsfTableComponent implements OnInit {
         if(indexColumn==-1){
           displayedColumns.unshift({ columnType:"string",
           columnName:array.columnName,
-          columnLabel:array.columnLabel});
+          columnLabel:array.columnLabel,
+          drillDowns: []});
         }else{
-          if(array.columnName=="Marketing_Carrier"){
             displayedColumns.splice(indexColumn,1);
             displayedColumns.unshift({ columnType:"string",
             columnName:array.columnName,
-            columnLabel:array.columnLabel});
-          }
-          if(array.columnName=="MktCar"){
-            displayedColumns.splice(indexColumn,1);
-            displayedColumns.unshift({ columnType:"string",
-            columnName:array.columnName,
-            columnLabel:array.columnLabel});
-          }
-          if(array.columnName=="Origin"){
-            displayedColumns.splice(indexColumn,1);
-            displayedColumns.unshift({ columnType:"string",
-            columnName:array.columnName,
-            columnLabel:array.columnLabel});
-          }
-          if(array.columnName=="Destination"){
-            displayedColumns.splice(indexColumn,1);
-            displayedColumns.unshift({ columnType:"string",
-            columnName:array.columnName,
-            columnLabel:array.columnLabel});
-          }
+            columnLabel:array.columnLabel,
+            drillDowns: []});
         }
 
       }
 
     }
+    return displayedColumns;
   }
 
 
@@ -277,9 +307,9 @@ export class MsfTableComponent implements OnInit {
   
           _this.globals.displayedColumns = data.metadata;
           if(_this.groupingArgument!=null){
-            _this.addGroupingColumns(_this.globals.displayedColumns);
+            _this.globals.displayedColumns  = _this.addGroupingColumns(_this.globals.displayedColumns);
           }
-          _this.metadata = data.metadata;
+          _this.metadata = _this.globals.displayedColumns;
           _this.globals.metadata = data.metadata;
           console.log( _this.globals.displayedColumns);
           
@@ -287,7 +317,7 @@ export class MsfTableComponent implements OnInit {
           
           let dataResult = new MatTableDataSource(mainElement);     
           if( _this.globals.moreResults){
-            if(_this.globals.currentOption.tabType!="athena"){
+            if(_this.globals.currentOption.tabType!="athena"&&_this.globals.currentOption.tabType!="mariadb"){
               _this.dataSource.data = _this.dataSource.data.concat(dataResult.data);
             }else{
               _this.dataSource = dataResult;
@@ -296,14 +326,14 @@ export class MsfTableComponent implements OnInit {
             _this.dataSource = dataResult;
           }
 
-          if(_this.globals.currentOption.tabType!="athena"){
+          if(_this.globals.currentOption.tabType!="athena"&&_this.globals.currentOption.tabType!="mariadb"){
             if( _this.globals.totalRecord<100 ||  _this.globals.totalRecord>100){
               _this.globals.moreResultsBtn = false;
               _this.globals.moreResults = false;
             }else{
               _this.globals.moreResultsBtn = true;
             }
-          }else{
+          }else{  
             var aux = (_this.actualPageNumber+1)*100;
             aux = aux!=0 ? aux : 100;
             if( _this.globals.totalRecord<aux){
@@ -311,6 +341,12 @@ export class MsfTableComponent implements OnInit {
               _this.globals.moreResults = false;
             }else{
               _this.globals.moreResultsBtn = true;
+            }
+          }
+          if(_this.limitNumber!=null){
+            if(_this.limitNumber.value1!=null &&_this.limitNumber.value1!=""){
+              _this.globals.moreResultsBtn = false;
+              _this.globals.moreResults = false;
             }
           }
       }else if (_this.globals.currentOption.metaData==0){
@@ -341,7 +377,7 @@ export class MsfTableComponent implements OnInit {
           _this.dataSource.sort =_this.sort;
         }
         _this.globals.dataSource = true;
-        //_this.globals.selectedIndex = 2;
+       // _this.globals.selectedIndex = 2;
         console.log(_this.dataSource);
       }else{
         _this.globals.dataSource = false;
@@ -371,8 +407,6 @@ export class MsfTableComponent implements OnInit {
     _this.globals.dataSource = false;
     _this.globals.template = false;
     console.log(result);
-
-    _this.globals.isLoading = false;
   }
 
   getCurrentClass(tableItem:any){
@@ -396,4 +430,120 @@ export class MsfTableComponent implements OnInit {
     aux = aux.replace("ï¿½","0");
     return aux;
   }
+
+  openSubQuery(drillDown : any,element: any){
+    this.globals.popupMainElement = null;
+    this.globals.popupResponse = null;
+    this.goToPopup(drillDown);
+    this.globals.currentDrillDown = drillDown;
+    var rowNumber = this.dataSource.filteredData.indexOf(element)
+    this.globals.popupLoading = true;
+    var parameters = this.getSubOptionParameters(drillDown.drillDownParameter,rowNumber);
+    this.service.getSubDataTableSource(this,drillDown.childrenOptionId,parameters,this.getPopupInfo,this.popupInfoError)
+   
+
+  }
+
+  popupInfoError(_this,data) {
+    console.log("ERROR")
+  }
+
+  getPopupInfo(_this,data){
+    let response =  data.Response;
+    _this.globals.subTotalRecord = response.total;
+    let keys = Object.keys(response);
+    let dataResult;
+    _this.globals.subDisplayedColumns = data.metadata;
+    _this.globals.subMetadata = data.metadata;
+    console.log( _this.globals.subDisplayedColumns);
+    if( _this.globals.subTotalRecord > 1){
+      let mainElement = _this.getMainKey(keys,response);
+    if(!(mainElement instanceof Array)){
+      mainElement = [mainElement];
+    }
+        dataResult = new MatTableDataSource(mainElement);     
+        // if( _this.globals.subMoreResults){
+        //     _this.globals.subDataSource.data = _this.dataSource.data.concat(dataResult.data);
+        //     _this.dataSource = dataResult;
+        // }else{
+        //   _this.dataSource = dataResult;
+        // }
+
+        // if(_this.globals.currentOption.tabType!="athena"&&_this.globals.currentOption.tabType!="mariadb"){
+        //   if( _this.globals.totalRecord<100 ||  _this.globals.totalRecord>100){
+        //     _this.globals.moreResultsBtn = false;
+        //     _this.globals.moreResults = false;
+        //   }else{
+        //     _this.globals.moreResultsBtn = true;
+        //   }
+        // }else{  
+        //   var aux = (_this.actualPageNumber+1)*100;
+        //   aux = aux!=0 ? aux : 100;
+        //   if( _this.globals.totalRecord<aux){
+        //     _this.globals.moreResultsBtn = false;
+        //     _this.globals.moreResults = false;
+        //   }else{
+        //     _this.globals.moreResultsBtn = true;
+        //   }
+        // }
+        // if(_this.limitNumber!=null){
+        //   if(_this.limitNumber.value1!=null &&_this.limitNumber.value1!=""){
+        //     _this.globals.moreResultsBtn = false;
+        //     _this.globals.moreResults = false;
+        //   }
+        // }
+    }else if(_this.globals.subTotalRecord==1){
+      let mainElement = _this.getMainKey(keys,response);
+      if(!(mainElement instanceof Array)){
+        mainElement = [mainElement];
+      }
+      _this.globals.popupResponse = response;
+      _this.globals.popupMainElement = mainElement;
+      console.log(_this.globals.popupResponse)
+      console.log(_this.globals.popupMainElement)
+    }else{
+      if( _this.globals.subMoreResults){
+        _this.globals.moreResultsBtn = false;
+          _this.globals.moreResults = false;
+      }
+    }  
+    if(_this.globals.currentDrillDown.title!="More Info Passenger"){
+      _this.globals.popupLoading = false;
+    }
+  }
+
+  goToPopup(drillDown:any){
+    var width = drillDown.width;
+    var height =drillDown.height;
+    if(width=="" || width==null){
+      width = "1200px";
+    }else{
+      width +="px";
+    }
+    if(height=="" || height==null){
+      height = "500px";
+    }else{
+      height +="px";
+    }
+    this.dialog.open (MsfMoreInfoPopupComponent, {
+      height: height,
+      width: width,
+      panelClass: 'msf-more-info-popup'
+    });
+  }
+
+  
+  getSubOptionParameters(parameters:any[],rowNumber: any){
+    var urlPam = "";
+    for (let index = 0; index < parameters.length; index++) {
+        const element = parameters[index].webservicesMetaId;
+        if(index==0){
+            urlPam+="?"+element.columnName+"="+this.dataSource.filteredData[rowNumber][element.columnName];
+        }else{
+            urlPam+="&"+element.columnName+"="+this.dataSource.filteredData[rowNumber][element.columnName];
+        }
+        return urlPam;
+    }
+}
+
 }

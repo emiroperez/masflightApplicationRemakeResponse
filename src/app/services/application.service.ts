@@ -284,4 +284,25 @@ export class ApplicationService {
     let url = "/getDashboardPanels?dashboardMenuId=" + dashboardMenuId;
     this.http.get (_this, this.host + url, handlerSuccess, handlerError, null);
   }
+
+  getSubDataTableSource(_this,option,parameters,handlerSuccess, handlerError,) {
+    // _this.globals.isLoading = true;
+    // let param = this.utils.getUrlParameters(_this.globals.currentOption);
+    let urlBase = option.baseUrl + parameters;
+    console.log(urlBase);
+    let urlArg = encodeURIComponent(urlBase);
+    console.log(urlArg);
+    let url = this.host + "/consumeWebServices?url=" + urlArg + "&optionId=" + option.id;
+    this.http.get(_this, url, handlerSuccess, handlerError, null);
+    console.log(url);
+  }
+
+  getWelcomeApplication(_this, handlerSuccess, handlerError) {
+    _this.globals.isLoading = true;								   
+    if(_this.globals.currentApplication==undefined){
+      _this.globals.currentApplication = JSON.parse(localStorage.getItem("currentApplication"));
+    }
+    let url = this.host + "/getWelcomeApplication?appId=" + _this.globals.currentApplication.id;
+    this.http.get(_this, url, handlerSuccess, handlerError, null);
+  }
 }

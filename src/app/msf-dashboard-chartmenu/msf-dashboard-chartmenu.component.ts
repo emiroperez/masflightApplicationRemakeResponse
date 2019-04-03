@@ -394,7 +394,7 @@ export class MsfDashboardChartmenuComponent implements OnInit {
           {
             categoryAxis = chart.yAxes.push (new am4charts.CategoryAxis ());
             categoryAxis.renderer.minGridDistance = 15;
-            categoryAxis.renderer.labels.template.maxWidth = 160;
+            categoryAxis.renderer.labels.template.maxWidth = 100; //kp03042019
           }
 
           valueAxis = chart.xAxes.push (new am4charts.ValueAxis ());
@@ -421,7 +421,7 @@ export class MsfDashboardChartmenuComponent implements OnInit {
 
             // Rotate labels if the chart is displayed vertically
             categoryAxis.renderer.labels.template.rotation = 330;
-            categoryAxis.renderer.labels.template.maxWidth = 160;
+            categoryAxis.renderer.labels.template.maxWidth = 100; //kp03042019
           }
 
           valueAxis = chart.yAxes.push (new am4charts.ValueAxis ());

@@ -15,7 +15,7 @@ export class MsfSummaryRevenueBuildsComponent implements OnInit {
   summaryList: any[] = [
     {id: 'YEAR', columnLabel: 'Year', columnName:'Year'},
     {id: 'MONTH', columnLabel: 'Month', columnName:'Month'},
-    {id: 'DAY', columnLabel: 'Day' ,columnName:'Day'},
+    //{id: 'DAY', columnLabel: 'Day' ,columnName:'Day'},
     {id: 'DESTINATION', columnLabel: 'Destination', columnName: 'Destination'},
     {id: 'AIRCRAFT_TYPE', columnLabel: 'Aircraft Type',columnName:'AircraftType'},
     {id: 'AIRLINE', columnLabel: 'Airline',columnName:'Carrier'},
@@ -27,7 +27,7 @@ export class MsfSummaryRevenueBuildsComponent implements OnInit {
   ngOnInit() { 
     this.argument.value1 = [
       {id: 'YEAR', columnLabel: 'Year', columnName:'Year'},
-      {id: 'MONTH', columnLabel: 'Month', columnName:'Month'},
-      {id: 'AIRCRAFT_TYPE', columnLabel: 'Aircraft Type',columnName:'AircraftType'}];
+      {id: 'MONTH', columnLabel: 'Month', columnName:'Month'}/*,
+      {id: 'AIRCRAFT_TYPE', columnLabel: 'Aircraft Type',columnName:'AircraftType'}*/];
   }
 }

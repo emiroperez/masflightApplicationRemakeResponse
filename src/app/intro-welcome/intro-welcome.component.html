@@ -1,0 +1,8 @@
+<!-- <div  *ngIf="globals.showIntro" >pruebas </div> -->
+<div [ngClass]="desc.description=='title' || desc.description=='subtitle' ? 'msf-intro-title' : 'msf-intro-container'">    
+  {{desc.label}}</div>
+<div *ngIf="desc.children && desc.children.length > 0 ">
+  <div *ngFor="let descChild of desc.children">
+    <app-intro-welcome [content]="descChild"></app-intro-welcome>
+  </div>
+</div>

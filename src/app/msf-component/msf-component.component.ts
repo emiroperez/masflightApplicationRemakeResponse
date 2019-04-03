@@ -297,5 +297,26 @@ export class MsfComponentComponent implements OnInit {
   }
   isContentType(argument: Arguments){
     return ComponentType.contentType == argument.type;
-  }																										   
+  }	
+  isTotalType(argument: Arguments){
+    return ComponentType.totalType == argument.type;
+  }
+  isGroupingGenre(argument: Arguments){
+    return ComponentType.groupingCompGenre == argument.type;
+  }
+  isGroupingTotal(argument: Arguments){
+    return ComponentType.groupingCompTotal == argument.type;
+  }
+  isGroupingOp(argument: Arguments){
+    return ComponentType.groupingOpSum == argument.type;
+  }
+  isGroupingOp2(argument: Arguments){
+    return ComponentType.groupingOpSum2 == argument.type;
+  }
+  isStates(argument: Arguments){
+    return ComponentType.states == argument.type;
+  }
+  isFlightSegments(argument: Arguments){
+    return ComponentType.flightSegments == argument.type;
+  }																									   
 }
