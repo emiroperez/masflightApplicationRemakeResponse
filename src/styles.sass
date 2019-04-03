@@ -19,11 +19,15 @@
 
 
 body
-    //background-image: url("assets/images/fondo.png") // kp19032019 comentar cuando quiera el nuevo diseño
+    background-image: url("assets/images/fondo.png") // kp19032019 comentar cuando quiera el nuevo diseño
     background-size: inherit
     font-family: $msf-font-family
     font-size: $msf-font-size
     margin: 0
+    
+.application-class
+    background-color: white
+    height: 100vh
 
 .mat-card 
     font-family: $msf-font-family
@@ -454,6 +458,7 @@ p
                 // height: 30px 
                 height: 50px //descomentar para el nuevo diseño KP19032019
                 margin: 0 auto!important
+                object-fit: contain
 
 .mat-icon.input_img
     color: #ED5C27 !important
@@ -3249,11 +3254,10 @@ div[id^="msf-dashboard-chart-display"]
     .msf-intro-div-image
         align-items: center
         float: right
-        margin-right: 8px
-        width: 100px
-        height: 40px
-        // width:  //kp29032019
-        // height: 60px //kp29032019
+        /* margin-right: 8px; */
+        /* width: 100px; */
+        height: 34px
+        object-fit: contain
     
     .icon-container
         width: 100% !important
