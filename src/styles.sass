@@ -19,7 +19,7 @@
 
 
 body
-    background-image: url("assets/images/fondo.png") // kp19032019 comentar cuando quiera el nuevo diseño
+    //background-image: url("assets/images/fondo.png") // kp19032019 comentar cuando quiera el nuevo diseño
     background-size: inherit
     font-family: $msf-font-family
     font-size: $msf-font-size
@@ -63,6 +63,7 @@ body
     background-repeat: no-repeat
     background-position: 30% 55%  
     background-image: url(assets/images/logo_global_peqe.png)
+    // background-image: url(assets/images/pulse_welc.png) //kp28032019
 
 .msf-header-title
     display: inline-block
@@ -450,9 +451,13 @@ p
 
 .login-header-image 
                 width: 80%!important
-                height: 30px 
-                //height: 50px //descomentar para el nuevo diseño KP19032019
+                // height: 30px 
+                height: 50px //descomentar para el nuevo diseño KP19032019
                 margin: 0 auto!important
+
+.mat-icon.input_img
+    color: #ED5C27 !important
+
 .image-avatar
             width: 20px
             height: 20px
@@ -528,7 +533,8 @@ p
     border: none
     // color: white kp19032019
     color: $msf-font-color-black
-    padding-left: 31px      
+    padding-left: 31px       
+    padding-bottom: 0px   
     background-size: 0 2px, 100% 1px
     background-position: 50% 100%, 50% 100%
     transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1)      
@@ -564,7 +570,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button
                 height: 15px
 .input_img 
     position: absolute
-    bottom: 14px
+    // bottom: 14px
+    bottom: 10px
     left: 5px
     width: 20px
     height: 20px
@@ -2971,6 +2978,10 @@ div[id^="msf-dashboard-chart-display"]
 
 /*cellphone*/
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+    .login-form .block-item-input .mat-input-responsive .mat-form-field-wrapper .mat-form-field-infix
+        padding: 0.7em 0
+            
+
     .login-card
         max-width: 275px  !important
         position: absolute !important
@@ -3239,8 +3250,10 @@ div[id^="msf-dashboard-chart-display"]
         align-items: center
         float: right
         margin-right: 8px
-        width: 75px
-        height: 60px
+        width: 100px
+        height: 40px
+        // width:  //kp29032019
+        // height: 60px //kp29032019
     
     .icon-container
         width: 100% !important
@@ -3330,7 +3343,7 @@ div[id^="msf-dashboard-chart-display"]
     
     .msf-intro-body-body
         // height: 100%
-        height: 86%
+        height: 85%
         // margin: 0% 2% 4% 4%
         width: 100%
 
