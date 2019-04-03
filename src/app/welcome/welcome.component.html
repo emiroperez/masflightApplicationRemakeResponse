@@ -21,7 +21,7 @@
       <a class="msf-link msf-support-text" >Need support?</a>
     </div> -->
     <!--content-->
-    <div style="height: calc(100% - 60px);" class="fade-in msf-container">
+    <div class="fade-in msf-container">
       <div *ngFor="let option of options" id="option.id" class="{{activeElement==option?'msf-show-panel':'msf-hide'}} msf-content">
         <!--Dashboard-->
         <div  style="height: 100%;" class="msf-internal-content" *ngIf="option.name==='Landing'" >

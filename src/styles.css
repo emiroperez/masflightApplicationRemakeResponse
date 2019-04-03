@@ -3469,6 +3469,7 @@ div[id^=msf-dashboard-chart-display] {
     width: 100%;
     left: 0;
     top: 60px;
+    height: calc(100vh - 60px);
   }
 
   .msf-menu-body-table {
