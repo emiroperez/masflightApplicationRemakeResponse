@@ -436,8 +436,8 @@ export class MsfDashboardChartmenuComponent implements OnInit {
         // Set category axis properties
         //kp20032019 categoryAxis.renderer.labels.template.fontSize = 10;
         categoryAxis.renderer.labels.template.wrap = true;
-        categoryAxis.renderer.labels.template.horizontalCenter  = "right";
-        categoryAxis.renderer.labels.template.textAlign  = "end";
+        categoryAxis.renderer.labels.template.horizontalCenter  = "left";
+        categoryAxis.renderer.labels.template.textAlign  = "Start";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.grid.template.strokeOpacity = 1;
         categoryAxis.renderer.line.strokeOpacity = 1;
@@ -576,7 +576,7 @@ export class MsfDashboardChartmenuComponent implements OnInit {
         chart.legend = new am4charts.Legend ();
         chart.legend.markers.template.width = 7;
         chart.legend.markers.template.height = 7;
-        chart.legend.labels.template.fontSize = 8;
+        chart.legend.labels.template.fontSize = 10;
         chart.legend.itemContainers.template.paddingTop = 1;
         chart.legend.itemContainers.template.paddingBottom = 1;
 

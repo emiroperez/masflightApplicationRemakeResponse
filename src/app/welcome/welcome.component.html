@@ -9,7 +9,7 @@
     </div>
   </div>
   <!--body-->
-  <div class="msf-body">
+  <div class="msf-body" style="position: relative;height: calc(100vh - 60px);">
     <!--nav-->
     <!-- <div class="msf-nav ocultar" >
       <ul>
@@ -21,11 +21,11 @@
       <a class="msf-link msf-support-text" >Need support?</a>
     </div> -->
     <!--content-->
-    <div class="fade-in msf-container">
-      <div *ngFor="let option of options" id="option.id" class="{{activeElement==option?'msf-show-panel':'msf-hide'}} msf-content">
+    <div style="position: relative;top: 0px;height: 100%;" class="fade-in msf-container">
+      <div style="position: relative;height: 100%;align-items: inherit;" *ngFor="let option of options" id="option.id" class="{{activeElement==option?'msf-show-panel':'msf-hide'}} msf-content">
         <!--Dashboard-->
-        <div  style="height: 100%;" class="msf-internal-content" *ngIf="option.name==='Landing'" >
-          <div class="landing-name-content">
+        <div  style=" height: 100%; position: relative; display: flex; flex-direction: column;" class="msf-internal-content" *ngIf="option.name==='Landing'" >
+          <div style="position: relative;" class="landing-name-content">
               <div style="width: calc(100% - 83px); margin-right: 10px;">
                   <div class="msf-intro-welcome">Welcome, {{globals.currentUser}}</div>
                   <div style="font-weight: lighter; font-size: 65%;">Last time: jan 31, 2019 4:00 pm</div>
@@ -35,7 +35,7 @@
                   <!-- <img src="../assets/images/logo_global_peqe.png" class="msf-intro-div-image"> -->
                  </div>
           </div>
-          <div class="landing-icon-content">
+          <div style="position: relative;" class="landing-icon-content">
             <div (click)="goTo(option)"  *ngFor="let option of options2">
             <div class="icon-container" style="display: table;" [ngStyle]="{'background-image': 'url(../' + getBackground(option) + ')'}" > 
               <div style=" display: table-cell; width: 100%; vertical-align: middle; height: 100%;">

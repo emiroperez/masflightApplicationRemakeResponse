@@ -47,16 +47,20 @@ export class AdminMenuRecursiveComponent implements OnInit {
   }
 
   toggle(option) {
-    if (option.isOpened) {
-      option.isOpened = false;
-      this.clickedDivState = 'start';
-    } else {
-      option.isOpened = true;
-      this.clickedDivState = 'end';   
-      if (option.parentId==null){
-        this.globals.labelCategory = option.label;
-      }   
-      console.log(option.label) 
+      if(option.children.length==0){
+        this.selectOption(option);
+      }else{
+        if (option.isOpened) {
+          option.isOpened = false;
+          this.clickedDivState = 'start';
+        } else {
+          option.isOpened = true;
+          this.clickedDivState = 'end';   
+          if (option.parentId==null){
+            this.globals.labelCategory = option.label;
+          }   
+          console.log(option.label) 
+      }
     }
 
 
@@ -64,7 +68,7 @@ export class AdminMenuRecursiveComponent implements OnInit {
 
   selectOption(option) {    
     this.optionSelected.emit(option); 
-    this.toggle(option)   
+    // this.toggle(option)   
   }
 
   changeDivState(option) {
