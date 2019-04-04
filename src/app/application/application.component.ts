@@ -51,7 +51,8 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.UserService.validarUsuario2(this);   
+      this.UserService.validarUsuario2(this); 
+      this.globals.clearVariables();  
   }
   // getMenuData(): void {
   //   this.appService.loadMenuOptions(this, this.handlerGetSuccessMenuData, this.handlerGetErrorMenuData);

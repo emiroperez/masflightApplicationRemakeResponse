@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class Globals {
-  baseUrl = "http://mobile.pulse.aspsols.com:8885";
+  baseUrl = "http://staging.pulse.aspsols.com:8880";
   // baseUrl = "";
-  baseUrl2 = "http://69.64.45.220:8886";
+  baseUrl2 = "http://69.64.45.220:8886";  
+  popupUrl = "http://testing.pulse.aspsols.com:8900";
   showTabs  : boolean = false;
   showCategoryArguments : boolean = false;
   labelCategory: any;
@@ -48,6 +49,11 @@ export class Globals {
   query : boolean= false;
   OptionDashboard : boolean= false;
   currentDashboardMenu : any;
+  popupMainElement: any;
+  popupResponse: any;
+  currentDrillDown: any;
+  popupLoading: boolean = false;
+  subTotalRecord = 0;
 
   clearVariables(){
     this.currentOption=null;
@@ -58,14 +64,19 @@ export class Globals {
     this.variables = null;
     this.values = null;
     this.generateDynamicTable = false;
-    this.selectedIndex = 1;
+    this.selectedIndex = 0;
     this.totalRecord = 0;
     this.startTimestamp = null;
     this.endTimestamp = null;
     this.bytesLoaded = 0;
     this.moreResults = false;
     this.moreResultsBtn = true;
-    this.dataSource = true;
+    this.dataSource = false;
+    this.showTabs   = false;
+    this.showcurrentAgts = false;
+    this.showCategoryArguments = false;
+    this.showMenu = false;
+    this.showIntro = true;
 
   }
 

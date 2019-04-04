@@ -1,7 +1,7 @@
 
   <!--body-->
   <div *ngIf="globals.showIntro" class="msf-intro-body msf-intro-body-mobile">
-        <div class="msf-intro-body-enc">
+        <!-- <div class="msf-intro-body-enc">
             <div style="width: calc(100% - 58px);">
                 <div class="msf-intro-welcome">Welcome, Administrator</div>
                 <div style="font-weight: lighter; font-size: 65%;">Last time: jan 31, 2019 4:00 pm</div>
@@ -9,9 +9,19 @@
             <div>
                 <img src="../assets/images/pulse_welc.png" class="msf-intro-div-image">               
             </div>
-        </div>
+        </div> -->
+        <div class="landing-name-content">
+                <div style="width: calc(100% - 83px); margin-right: 10px;">
+                    <div class="msf-intro-welcome">Welcome, {{globals.currentUser}}</div>
+                    <div style="font-weight: lighter; font-size: 65%;">Last time: jan 31, 2019 4:00 pm</div>
+                </div>
+                <div>
+                    <img src="../assets/images/pulse_welc.png" class="msf-intro-div-image"> 
+                    <!-- <img src="../assets/images/logo_global_peqe.png" class="msf-intro-div-image"> -->
+                   </div>
+            </div>
         <div  *ngIf="globals.currentOption != 'dashboard'"   class="msf-intro-body-body"> 
-            <div *ngFor="let desc of content" style="margin: 0% 8% 0% 4%">
+            <div *ngFor="let desc of content" style="margin: 0% 0% 2% 4%; padding-right: 8%; overflow-y: scroll; height: 100%;">
                 <app-intro-welcome [content]="desc"></app-intro-welcome> 
             </div>        
             
