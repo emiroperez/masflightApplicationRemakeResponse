@@ -18,7 +18,10 @@ body {
 
 .application-class {
   background-color: white;
-  height: 100vh;
+  height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: stretch;
 }
 
 .mat-card {
