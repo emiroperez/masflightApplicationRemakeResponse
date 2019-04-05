@@ -3414,7 +3414,7 @@ input {
   }
 
   .landing-icon-content {
-    height: 85%;
+    height: 84%;
     margin-top: 0%;
     padding: 0px;
     align-items: center;
@@ -3423,7 +3423,7 @@ input {
   }
   .landing-icon-content div {
     width: 50%;
-    height: 49.4%;
+    height: 49%;
     text-align: center;
     display: inline-block;
     margin: 0%;
