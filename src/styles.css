@@ -3383,6 +3383,18 @@ input {
   font-size: 16px !important;
 }
 
+.mat-form-field-flex {
+  align-items: center !important;
+}
+
+.mat-form-field-suffix {
+  border-top: 0.84375em solid transparent;
+}
+
+.mat-form-field-label-wrapper {
+  top: -0.5em !important;
+}
+
 /*Media query kp*/
 /*cellphone*/
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
