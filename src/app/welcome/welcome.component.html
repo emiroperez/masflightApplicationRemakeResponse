@@ -28,7 +28,7 @@
         <div *ngFor="let option of options" id="option.id" class="{{activeElement==option?'msf-show-panel':'msf-hide'}} msf-content">
         <!--Dashboard-->
         <!-- <div  style=" height: 100%; position: relative; display: flex; flex-direction: column;" class="msf-internal-content" *ngIf="option.name==='Landing'" > -->
-        <div  style=" height: 100%;" class="msf-internal-content" *ngIf="option.name==='Landing'" >
+        <div  class="msf-internal-content">
           <div style="position: relative;" class="landing-name-content">
               <div style="width: calc(100% - 83px); margin-right: 10px;">
                   <div class="msf-intro-welcome">Welcome, {{globals.currentUser}}</div>

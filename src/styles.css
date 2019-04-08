@@ -222,6 +222,9 @@ body {
 
 .msf-internal-content {
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .mf-subtitle {
@@ -3430,16 +3433,19 @@ input {
   }
 
   .landing-icon-content {
-    height: 84%;
+    height: 85%;
     margin-top: 0%;
     padding: 0px;
     align-items: center;
     margin: 0%;
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   .landing-icon-content div {
-    width: 50%;
-    height: 49%;
+    width: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: stretch;
     text-align: center;
     display: inline-block;
     margin: 0%;

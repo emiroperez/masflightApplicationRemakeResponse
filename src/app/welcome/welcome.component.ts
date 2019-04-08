@@ -109,21 +109,31 @@ export class WelcomeComponent implements OnInit {
     this.service.getApplications(this,this.handlerSuccess,this.handlerError);
   }
 
-
-
- handlerSuccess(_this,data){
+  handlerSuccess(_this,data){
     _this.options = data;
     _this.options2 = data.slice();
-    _this.options.unshift({id:0,
-                        name:"Landing",
-                        url:"/welcome"})
-    _this.activeElement = _this.options[0];
-    
-    setTimeout(() => {
-      _this.globals.isLoading = false; 
-  }, 3000);
 
+    _this.activeElement = _this.options[0];
+    //Cambio temporal------------------------------------------------------
+    const indexColumn = _this.options2.findIndex(column => column.id === 2);
+    _this.options2.splice(indexColumn,1);
+    //---------------------------------------------------------------------
+    _this.globals.isLoading = false;
   }
+
+//  handlerSuccess(_this,data){
+//     _this.options = data;
+//     _this.options2 = data.slice();
+//     _this.options.unshift({id:0,
+//                         name:"Landing",
+//                         url:"/welcome"})
+//     _this.activeElement = _this.options[0];
+    
+//     setTimeout(() => {
+//       _this.globals.isLoading = false; 
+//   }, 3000);
+
+//   }
 
   handlerError(_this,result){
     console.log(result);
@@ -146,7 +156,8 @@ export class WelcomeComponent implements OnInit {
   getBackground(option : any){
     var aux = option.name;
     aux = aux.replace(" ","");
-    return "assets/images/w_"+aux+"1.png"
+    // return "assets/images/w_"+aux+"1.png" para cuando es 4 aplicaciones
+    return "assets/images/w_"+aux+"2.png"
   }
   
   getBackground2(option : any){
