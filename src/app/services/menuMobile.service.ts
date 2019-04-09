@@ -44,6 +44,7 @@ export class MobileMenuService {
 
 
   getDashboardsByUser(_this, successHandler, errorHandler){
+    _this.globals.isLoading = true;
     let url = "/getDashboards?application=" + _this.globals.currentApplication.id;
       this.get (_this, _this.globals.baseUrl + "/secure" + url, successHandler, errorHandler);
   }

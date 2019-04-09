@@ -13,7 +13,7 @@
             <img src="../assets/images/usuario1.png" class="input_img"> 
             <!-- <img src="../assets/images/usuario.png" class="input_img">  -->
             <!-- <mat-icon class="input_img">person</mat-icon> -->
-            <input  matInput autocomplete="off" type="text" placeholder="Username" class="input-username" [formControl]="usernameValidator" name="username" [(ngModel)]="user.username"/>         
+            <input  matInput autocomplete="off" type="email" placeholder="Username" class="input-username" [formControl]="usernameValidator" name="username" [(ngModel)]="user.username"/>         
             <mat-error *ngIf="usernameValidator.invalid">{{getErrorUsernameMessage()}}</mat-error>
         </mat-form-field>
       </div>

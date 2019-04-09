@@ -58,7 +58,6 @@ export class MsfDashboardComponent implements OnInit {
     if(this.globals.currentApplication==undefined){
       this.globals.currentApplication = JSON.parse(localStorage.getItem("currentApplication"));
     }
-    this.globals.isLoading = true;
     this.service.getMenuString (this, this.globals.currentApplication.id,
       this.addDataForms, this.handlerError);
   }

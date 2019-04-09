@@ -61,7 +61,7 @@ export class MenuNavComponent implements OnInit {
 
   handlerGetSuccessMenuData(_this, data) {
     _this.menu_nav = data;
-    _this.globals.isLoading = false;
+    //_this.globals.isLoading = false;
     console.log( _this.menu_nav)
     _this.getDashboardsUser();
   }
@@ -108,7 +108,6 @@ export class MenuNavComponent implements OnInit {
   }
   
   getDashboardsUser(){
-    this.globals.isLoading = true;
     this.menuService.getDashboardsByUser(this,this.handlerDashboard, this.errorHandler);
   }
 

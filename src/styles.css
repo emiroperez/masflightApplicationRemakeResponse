@@ -1962,6 +1962,11 @@ mat-dialog-container {
   padding: 10px !important;
   height: auto !important;
   font-size: 100% !important;
+  background-color: #333333 !important;
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+  background: #3d3d3d !important;
 }
 
 .mat-radio-label-content {
@@ -3400,6 +3405,10 @@ input {
 
 .login-form .mat-form-field-appearance-legacy .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-form-field-label-wrapper {
   top: -1em !important;
+}
+
+.mat-expansion-panel-header:hover {
+  background: #3d3d3d;
 }
 
 /*Media query kp*/

@@ -52,7 +52,6 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
       this.UserService.validarUsuario2(this); 
-      this.globals.clearVariables();  
   }
   // getMenuData(): void {
   //   this.appService.loadMenuOptions(this, this.handlerGetSuccessMenuData, this.handlerGetErrorMenuData);
@@ -246,6 +245,7 @@ export class ApplicationComponent implements OnInit {
       this.globals.showCategoryArguments = false;
       this.globals.showTabs=false;
       this.globals.dataSource = false;
+      this.globals.hideParametersPanels=false;
     }
     else if(!this.globals.showMenu && this.globals.showTabs){
       this.globals.showMenu = false;
@@ -253,6 +253,7 @@ export class ApplicationComponent implements OnInit {
       this.globals.showCategoryArguments = true;
       this.globals.showTabs=false;
       this.globals.dataSource = false;
+      this.globals.hideParametersPanels=false;
       
     }
   }

@@ -95,6 +95,7 @@ export class LoginScreenComponent implements OnInit {
 
 
   ngOnInit() {
+      this.globals.isLoading = true;
       this.getUserLoggedIn();
   }
 

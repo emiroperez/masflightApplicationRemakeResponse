@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class Globals {
-  baseUrl = "http://staging.pulse.aspsols.com:8880";
+  baseUrl = "http://staging.pulse.aspsols.com:8885";
   // baseUrl = "";
   baseUrl2 = "http://69.64.45.220:8886";  
   popupUrl = "http://testing.pulse.aspsols.com:8900";
@@ -54,6 +54,10 @@ export class Globals {
   currentDrillDown: any;
   popupLoading: boolean = false;
   subTotalRecord = 0;
+  hideParametersPanels : boolean =false;
+  scheduledata:any;
+  // scheduleChart :AmChart;
+  // schedulepanelinfo :any;
 
   clearVariables(){
     this.currentOption=null;
@@ -77,6 +81,7 @@ export class Globals {
     this.showCategoryArguments = false;
     this.showMenu = false;
     this.showIntro = true;
+    this.hideParametersPanels  =false;
 
   }
 

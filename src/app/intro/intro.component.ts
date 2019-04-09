@@ -19,13 +19,13 @@ export class IntroComponent implements OnInit {
 
   handlerSuccess(_this, data) {
     _this.content = data;
-    _this.globals.isLoading = false;
+    //_this.globals.isLoading = false;
     console.log( _this.content)
   }
 
   handlerError(_this, result) {
     console.log(result);
-    _this.globals.isLoading = false;
+    //_this.globals.isLoading = false;
   }
 
   

@@ -70,7 +70,7 @@ export class UserService {
     let url= this.globals.baseUrl+'/secure/getUserloggedin';
       this.createAuthorizationHeader();
       this.http2.get(url,httpOptions).subscribe(result => {
-
+        _this.globals.clearVariables();  
       }, error => {
         _this.globals.isLoading = false;
         _this.router.navigate(['']);
@@ -85,11 +85,13 @@ export class UserService {
       this.createAuthorizationHeader();
       this.http2.get(url,httpOptions).subscribe(result => {
           // successHandler(_this,result);
+          _this.globals.isLoading = false;
            _this.loggedIn = true;
            _this.router.navigate(["/welcome"]);
-      }, error =>
-          // errorHandler(_this,error)
-          console.log(error)
+      }, error =>{
+        // errorHandler(_this,error)
+        _this.globals.isLoading = false;
+        console.log(error);}
     );
     }
 /*
