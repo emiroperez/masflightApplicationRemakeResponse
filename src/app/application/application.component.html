@@ -30,11 +30,13 @@
 <div *ngIf="globals.dataSource && !globals.showMenu && !globals.showIntro && !globals.showCategoryArguments "
     class="msf-menu-icon-container msf-menu-icons-container">
     <button class="msf-menu-icon"><img src="../assets/images/ExporttoExcel.png"
-        class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()"><span
-        class="msf-vertical-middle ocultar">Export Excel</span></button>
+        class="msf-menu-image msf-vertical-middle" (click)="exportToExcel()">
+        <!-- <span class="msf-vertical-middle ocultar">Export Excel</span> -->
+    </button>
         <button class="msf-menu-icon"><img src="../assets/images/CopytoClipboard.png"
-                class="msf-menu-image msf-vertical-middle"><span class="msf-vertical-middle ocultar">Export
-                PDF</span></button>
+                class="msf-menu-image msf-vertical-middle">
+                <!-- <span class="msf-vertical-middle ocultar">Export PDF</span> -->
+            </button>
 </div>
 
 <!--body-->

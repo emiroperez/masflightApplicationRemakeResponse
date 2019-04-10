@@ -40,17 +40,26 @@ export class ApplicationService {
   }
 
   getDataTableSource(_this, handlerSuccess, handlerError,pageNumber: String) {
-    _this.globals.isLoading = true;
+    // _this.globals.isLoading = true;
     _this.displayedColumns = [];
     let param = this.utils.getUrlParameters(_this.globals.currentOption);
     let urlBase = param.url;
-    urlBase += "&MIN_VALUE=0&MAX_VALUE=999&minuteunit=m&pageSize=100&page_number="+pageNumber;
+    if(!urlBase.includes("MIN_VALUE")){
+      urlBase += "&MIN_VALUE=0";
+    }
+    if(!urlBase.includes("MAX_VALUE")){
+      urlBase += "&MAX_VALUE=999";
+    }
+    if(!urlBase.includes("minuteunit")){
+      urlBase += "&minuteunit=m";
+    }
+    urlBase += "&pageSize=100&page_number="+pageNumber;
     if(pageNumber=="0"){
       _this.dataSource = null;
     }
     console.log(urlBase);
     let urlArg = encodeURIComponent(urlBase);
-    let url = this.host + "/consumeWebServices?url=" + urlArg + "&optionId=" + _this.globals.currentOption.id;   
+    let url = this.host + "/consumeWebServices?url=" + urlArg + "&optionId=" + _this.globals.currentOption.id;
     this.http.get(_this, url, handlerSuccess, handlerError, null);
     console.log(url);
   }
@@ -74,7 +83,6 @@ export class ApplicationService {
     _this.jqxTreeGridRef.clear();
     let param = this.utils.getUrlParameters(_this.globals.currentOption);
     let urlBase = param.url;
-    //urlBase += "&MIN_VALUE=0&MAX_VALUE=999&minuteunit=m&pageSize=999999";
     urlBase += "&MIN_VALUE=0&MAX_VALUE=999&minuteunit=m&pageSize=999999&page_number=0";
     console.log(urlBase);
     let urlArg = encodeURIComponent(urlBase);

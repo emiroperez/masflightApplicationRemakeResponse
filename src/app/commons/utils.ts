@@ -99,25 +99,47 @@ export class Utils{
         return params;
     }
 
-    getArguments(argument: Arguments){
-        let args='';
-        if(argument.name1){
-            args = argument.name1 + "=" + this.getValueFormat(argument.type, argument.value1);
+
+    getArguments(argument: Arguments)
+    {
+        let args = '';
+
+        if (argument.name1)
+            args = argument.name1 + "=" + this.getValueFormat (argument.type, argument.value1);
+
+        if (argument.name2)
+        {
+            if (args !== '')
+                args += "&";
+
+            args += argument.name2 + "=" + this.getValueFormat (argument.type, argument.value2);          
         }
-        if(argument.name2){
-            if(args !== ''){
-                args += "&" + argument.name2 + "=" + this.getValueFormat(argument.type, argument.value2);
-            }else{
-                args += argument.name2 + "=" + this.getValueFormat(argument.type, argument.value2);
-            }            
+
+        if (argument.name3)
+        {
+            if (args !== '')
+                args += "&";
+
+            args += argument.name3 + "=" + this.getValueFormat (argument.type, argument.value3);
         }
-        if(argument.name3){
-            if(args !== ''){
-                args += "&" + argument.name3 + "=" + this.getValueFormat(argument.type, argument.value3);
-            }else{
-                args += argument.name3 + "=" + this.getValueFormat(argument.type, argument.value3);
-            }            
-        }
+
+        return args;
+    }
+
+    getArguments2(parentArgument: Arguments, categoryFilter)
+    {
+        let args = '';
+
+        // Duplicate the value into the three parameters
+        if (parentArgument.name1)
+            args = parentArgument.name1 + "=" + categoryFilter;
+
+        if (parentArgument.name2)
+            args += "&" + parentArgument.name2 + "=" + categoryFilter;
+
+        if (parentArgument.name3)
+            args += "&" + parentArgument.name3 + "=" + categoryFilter;
+
         return args;
     }
 
@@ -247,7 +269,8 @@ export class Utils{
                 i++;
             }
             return valueAux;
-        }else if (type == ComponentType.selectBoxMultipleOption || type == ComponentType.totalType || type == ComponentType.flightSegments || type == ComponentType.states){
+        }else if (type == ComponentType.selectBoxMultipleOption || type == ComponentType.totalType || type == ComponentType.flightSegments || type == ComponentType.states
+            || type == ComponentType.flightDelaysCheckbox){
                 var valueAux="";
                 var i = 0;
                 for(var val of value){
@@ -433,7 +456,7 @@ export class Utils{
                 i++;
             }
             return valueAux;
-        }else if (type == ComponentType.region){
+        }else if (type == ComponentType.region || type == ComponentType.flightDelaysCheckbox){
             var valueAux="";
             var i = 0;
             for(var val of value){

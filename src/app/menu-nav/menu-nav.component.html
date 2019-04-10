@@ -11,11 +11,11 @@
       }">
           <div class="menu-option-container" [ngClass]="{
             'menu-parent-option': globals.OptionDashboard
-          }">
+          }" (click)="toggle(globals.OptionDashboard)">
               <div class="msf-item menu-field menu-option-label">
                   <div class="msf-item-label menu-option-text">Dashboard</div>  
               </div>
-              <button class="menu-option-button" mat-icon-button style="vertical-align: super;" (click)="toggle(globals.OptionDashboard)">
+              <button class="menu-option-button" mat-icon-button style="vertical-align: super;">
                   <mat-icon *ngIf="!globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_down</mat-icon>
                   <mat-icon *ngIf="globals.OptionDashboard" style="color: white" aria-label="Toogle">keyboard_arrow_up</mat-icon>
               </button>
