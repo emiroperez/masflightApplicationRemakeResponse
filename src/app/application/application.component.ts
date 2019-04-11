@@ -12,6 +12,7 @@ import { ApplicationService } from '../services/application.service';
 import { ExcelService } from '../services/excel.service';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { AmChartsService } from '@amcharts/amcharts3-angular';
 
 @Component({
   selector: 'app-application',
@@ -46,13 +47,66 @@ export class ApplicationComponent implements OnInit {
     private appService: ApplicationService, 
     private excelService: ExcelService,
     private UserService: UserService,
-    private router: Router) {
+    private router: Router
+    ,private AmCharts: AmChartsService) {
     this.status = true;    
   }
 
   ngOnInit() {
       this.UserService.validarUsuario2(this); 
   }
+
+   
+  makeOptions(dataProvider)
+  {
+
+   return {
+    "type": "map",
+    "theme": "none",
+      "backgroundColor" : "#FFFFFF",
+      "dataProvider": {
+        "map": "worldLow",
+        "zoomLevel": 1,
+        "zoomLongitude": 2.3510,
+        "zoomLatitude": 48.8567
+       },
+    
+      "areasSettings": {
+        "outlineColor ": "#3b3b3b",
+        "unlistedAreasOutlineColor " : "#3b3b3b",
+        "unlistedAreasColor": "#3b3b3b",
+        "outlineColor": "#000000",
+        "outlineAlpha": 0.5,
+        "outlineThickness": 0.5,
+        "rollOverBrightness": 30,
+        "slectedBrightness": 50,
+        "rollOverOutlineColor": "#3b3b3b",
+        "selectedOutlineColor": "#3b3b3b",
+        "unlistedAreasOutlineColor": "#000000",
+        "unlistedAreasOutlineAlpha": 0.2
+      },
+    
+      "imagesSettings": {
+        "color": "#dedef7",
+        "rollOverColor": "#585869",
+        "selectedColor": "#585869",
+        "pauseDuration": 0.5,
+        "animationDuration": 10,
+        "adjustAnimationSpeed": true
+      },
+    
+      "linesSettings": {
+        "color": "#00a3e1",
+        "arrowSize" : 40,
+        "size" :40
+      },
+    
+      "export": {
+        "enabled": true
+      }  
+  }
+
+}
   // getMenuData(): void {
   //   this.appService.loadMenuOptions(this, this.handlerGetSuccessMenuData, this.handlerGetErrorMenuData);
   //   this.optionSelected = {};
@@ -107,11 +161,18 @@ export class ApplicationComponent implements OnInit {
   }
 
   search(){
+    this.globals.moreResults = false;
     this.globals.isLoading=true;
     if(!this.globals.showMenu && this.globals.showCategoryArguments){
       this.globals.showTabs=true;
       this.globals.showCategoryArguments=false;
       this.globals.showcurrentAgts=false;
+      if(this.globals.currentOption.metaData==2){
+        this.globals.mapsc=true;
+  
+      }else{
+        this.globals.mapsc=false;
+      }
       setTimeout(() => {
         this.search2();
       }, 3000);   
@@ -119,7 +180,6 @@ export class ApplicationComponent implements OnInit {
   }
 
   search2(){
-    this.globals.moreResults = false;
     this.globals.query = true;
     this.globals.map = false; /*kp 27022019*/
     if(!this.globals.showMenu && this.globals.showCategoryArguments){
@@ -132,7 +192,10 @@ export class ApplicationComponent implements OnInit {
       this.msfContainerRef.msfMapRef.getTrackingDataSource();       
     }else if(this.globals.currentOption.tabType === 'usageStatistics'){
       this.msfContainerRef.msfTableRef.getDataUsageStatistics();
-    }else{ 
+    } else{ 
+      if(this.globals.currentOption.tabType === 'scmap'){ //kp10042019
+        this.globals.scheduleChart = this.AmCharts.makeChart ("chartdivmap", this.makeOptions (""));
+      }
       this.msfContainerRef.msfTableRef.getData(false); 
     }        
   }
@@ -246,6 +309,7 @@ export class ApplicationComponent implements OnInit {
       this.globals.showTabs=false;
       this.globals.dataSource = false;
       this.globals.hideParametersPanels=false;
+      this.globals.mapsc=false; 
     }
     else if(!this.globals.showMenu && this.globals.showTabs){
       this.globals.showMenu = false;
@@ -253,10 +317,27 @@ export class ApplicationComponent implements OnInit {
       this.globals.showCategoryArguments = true;
       this.globals.showTabs=false;
       this.globals.dataSource = false;
-      this.globals.hideParametersPanels=false;
-      
+      this.globals.mapsc=false; 
+      this.returnSearch();     
     }
   }
+
+  
+  backMap(){
+    this.globals.showTabs=true;
+  }
+
+  
+  returnSearch(){
+    this.globals.hideParametersPanels=false;
+    this.globals.schedulepanelinfo =false;
+    this.AmCharts.updateChart(this.globals.scheduleChart, () => {
+      this.globals.scheduleChart.dataProvider.images  = [];
+      this.globals.scheduleChart.dataProvider.lines =[];
+      this.globals.scheduleChart.dataProvider.zoomLevel = 1;
+      
+      });
+   }
 
   exportToExcel():void {
     this.excelService.exportAsExcelFile(this.msfContainerRef.msfTableRef.table, this.globals.currentOption.label);

@@ -156,6 +156,8 @@ import { MsfFlightDurationSegmentsComponent } from './msf-flight-duration-segmen
 import { MsfMoreInfoPopupComponent } from './msf-more-info-popup/msf-more-info-popup.component';
 import { IntroWelcomeComponent } from './intro-welcome/intro-welcome.component';
 import { MsfSchedulePanelComponent } from './msf-schedule-panel/msf-schedule-panel.component';
+import { MsfSchedulePanelInfoComponent } from './msf-schedule-panel-info/msf-schedule-panel-info.component';
+import { MsfScheduleMapsComponent } from './msf-schedule-maps/msf-schedule-maps.component';
 
 @NgModule({
   declarations: [
@@ -293,7 +295,9 @@ import { MsfSchedulePanelComponent } from './msf-schedule-panel/msf-schedule-pan
     MsfStatesComponent,
     MsfFlightDurationSegmentsComponent,    
     MsfMoreInfoPopupComponent, IntroWelcomeComponent,
-    MsfSchedulePanelComponent
+    MsfSchedulePanelComponent,
+    MsfSchedulePanelInfoComponent,
+    MsfScheduleMapsComponent
 
     
   ],

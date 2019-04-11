@@ -183,11 +183,11 @@ body {
 }
 
 .msf-show {
-  display: block;
+  display: block !important;
 }
 
 .msf-hide {
-  display: none;
+  display: none !important;
 }
 
 .msf-show-panel {
@@ -3411,6 +3411,11 @@ input {
 }
 
 /*Media query kp*/
+.btn-showMap {
+  background: #01abec;
+  width: 100%;
+}
+
 /*cellphone*/
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .login-form .block-item-input .mat-input-responsive .mat-form-field-wrapper .mat-form-field-infix {

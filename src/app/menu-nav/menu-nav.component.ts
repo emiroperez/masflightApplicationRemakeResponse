@@ -4,6 +4,7 @@ import { ApplicationService } from '../services/application.service';
 //import { MenuService } from '../services/menu.service';
 import { MobileMenuService } from '../services/menuMobile.service';
 import { MsfDashboardChartValues } from '../msf-dashboard-chartmenu/msf-dashboard-chartvalues';
+import { AmChartsService } from '@amcharts/amcharts3-angular';
 
 @Component({
   selector: 'app-menu-nav',
@@ -30,12 +31,65 @@ export class MenuNavComponent implements OnInit {
 
   displayAddChartMenu: boolean = false;
   
-  constructor(public globals: Globals /*, private appService: ApplicationService*/ ,private menuService: MobileMenuService, private service: ApplicationService ) { }
+  constructor(public globals: Globals /*, private appService: ApplicationService*/ ,private menuService: MobileMenuService, private service: ApplicationService) { }
 
   ngOnInit() {
     this.getMenuData();
     // this.getCategoryArguments();
   }
+
+  
+//   makeOptions(dataProvider)
+//   {
+
+//    return {
+//     "type": "map",
+//     "theme": "none",
+//       "backgroundColor" : "#FFFFFF",
+//       "dataProvider": {
+//         "map": "worldLow",
+//         "zoomLevel": 1,
+//         "zoomLongitude": 2.3510,
+//         "zoomLatitude": 48.8567
+//        },
+    
+//       "areasSettings": {
+//         "outlineColor ": "#3b3b3b",
+//         "unlistedAreasOutlineColor " : "#3b3b3b",
+//         "unlistedAreasColor": "#3b3b3b",
+//         "outlineColor": "#000000",
+//         "outlineAlpha": 0.5,
+//         "outlineThickness": 0.5,
+//         "rollOverBrightness": 30,
+//         "slectedBrightness": 50,
+//         "rollOverOutlineColor": "#3b3b3b",
+//         "selectedOutlineColor": "#3b3b3b",
+//         "unlistedAreasOutlineColor": "#000000",
+//         "unlistedAreasOutlineAlpha": 0.2
+//       },
+    
+//       "imagesSettings": {
+//         "color": "#dedef7",
+//         "rollOverColor": "#585869",
+//         "selectedColor": "#585869",
+//         "pauseDuration": 0.5,
+//         "animationDuration": 10,
+//         "adjustAnimationSpeed": true
+//       },
+    
+//       "linesSettings": {
+//         "color": "#00a3e1",
+//         "arrowSize" : 40,
+//         "size" :40
+//       },
+    
+//       "export": {
+//         "enabled": true
+//       }  
+//   }
+
+// }
+
   getMenuData(): void {
     this.menuService.getMenu(this, this.handlerGetSuccessMenuData, this.handlerGetErrorMenuData);
     /*this.optionSelected = {}; kp 27/02/2019*/
@@ -95,11 +149,17 @@ export class MenuNavComponent implements OnInit {
       this.globals.showMenu = false;
       this.globals.showIntro = false;
       this.globals.currentOption = option;
+      this.globals.mapsc = false;
       this.globals.dataAvailabilityInit();
       if(this.globals.currentOption.tabType === 'map'){
         this.globals.map = true;
         this.globals.selectedIndex = 1;
       }
+      if(this.globals.currentOption.tabType === 'scmap'){ //kp10042019
+        this.globals.mapsc = true;
+        this.globals.selectedIndex = 1;
+        // this.globals.scheduleChart = this.AmCharts.makeChart ("chartdivmap", this.makeOptions (""));
+      } 
       if(this.globals.currentOption.tabType === 'statistics'){
         this.globals.usageStatistics = true;
       }

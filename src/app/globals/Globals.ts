@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Option} from '../model/Option';
 import { MatSort } from '@angular/material';
 import { Observable } from 'rxjs';
+import { AmChart } from '@amcharts/amcharts3-angular';
 
 @Injectable()
 export class Globals {
@@ -56,8 +57,9 @@ export class Globals {
   subTotalRecord = 0;
   hideParametersPanels : boolean =false;
   scheduledata:any;
-  // scheduleChart :AmChart;
-  // schedulepanelinfo :any;
+  scheduleChart :AmChart;
+  schedulepanelinfo :any;
+  mapsc: boolean = false;
 
   clearVariables(){
     this.currentOption=null;
@@ -82,6 +84,7 @@ export class Globals {
     this.showMenu = false;
     this.showIntro = true;
     this.hideParametersPanels  =false;
+    this.mapsc= false;
 
   }
 

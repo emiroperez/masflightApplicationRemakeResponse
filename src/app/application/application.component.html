@@ -3,7 +3,7 @@
     <div class="msf-menu-header-image-container">
         <img (click)="goTo()" *ngIf="globals.showMenu || globals.showIntro"
             src="../assets/images/logo_global_peqe.png" class="msf-menu-logo">
-        <div *ngIf="globals.showCategoryArguments || globals.showTabs" class="msf-menu-logo2 msf-menu-logo">
+        <div *ngIf="globals.showCategoryArguments || globals.showTabs  || globals.mapsc" class="msf-menu-logo2 msf-menu-logo">
             <div style="color: white; font-size: 14px; margin-bottom: 2%; width: 93%;">{{globals.labelCategory}}</div>
             <div style="color: #01abec; font-size: 12px; width: 93%;">{{globals.currentOption.label}}</div>
         </div>
@@ -21,6 +21,10 @@
         </button>
         <button *ngIf="globals.showCategoryArguments || globals.showTabs" class="mat-icon-menu" mat-icon-button
             (click)="backMenu()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="!globals.showTabs && !globals.showMenu && globals.mapsc && !globals.showCategoryArguments" class="mat-icon-menu" mat-icon-button
+            (click)="backMap()">
             <mat-icon>arrow_back</mat-icon>
         </button>
     </div>

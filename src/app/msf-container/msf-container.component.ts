@@ -29,6 +29,9 @@ export class MsfContainerComponent implements OnInit {
   @ViewChild('msfDynamicTableTabRef')
   msfDynamicTableTabRef: MatTab;
   
+  @ViewChild('msfScMapRef')
+  msfScMapRef: MatTab;
+  
   @ViewChild(MatTabGroup) tabGroup: MatTabGroup;
 
   constructor(public globals: Globals) { }
