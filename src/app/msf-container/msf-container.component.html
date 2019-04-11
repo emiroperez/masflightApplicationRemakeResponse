@@ -2,16 +2,15 @@
 <!-- <ng-container [ngClass]="globals.showTabs ? 'display_block' : 'ocultar'">         -->
     <mat-tab-group [ngClass]="globals.showTabs ? 'msf-show' : 'msf-hide'" [selectedIndex]="globals.getSelectedIndex()" #tabs>
         
-        <!-- <mat-tab [ngClass]="!globals.map && !globals.mapsc ? 'msf-show' : 'msf-hide'"> -->
         <mat-tab [ngClass]="globals.query ? 'msf-show' : 'msf-hide'">
-            <ng-template mat-tab-label  *ngIf="globals.tab">
+            <ng-template mat-tab-label  *ngIf="globals.tab && !globals.map && !globals.hideParametersPanels">
                 {{globals.currentOption.tab}} 
                 <mat-icon (click)="closeTab(2)" class="close-icon">close</mat-icon>
             </ng-template>
             <div  *ngIf="!globals.map && !globals.hideParametersPanels && globals.showTabs" class="msf-viewport-container">
                 <app-msf-table #msfTableRef [tabRef]="tabRef"></app-msf-table>
             </div>
-        </mat-tab>
+        </mat-tab>     
 
         <mat-tab [ngClass]="globals.hideParametersPanels ? 'msf-show' : 'msf-hide'">
             <ng-template mat-tab-label *ngIf="globals.mapsc">
@@ -20,11 +19,17 @@
             <div *ngIf="globals.hideParametersPanels" class="msf-viewport-container">
                 <app-msf-schedule-panel></app-msf-schedule-panel>
             </div>
+        </mat-tab>    
+
+        <mat-tab [ngClass]="globals.map ? 'msf-show' : 'msf-hide'" #tabRef>
+                <ng-template mat-tab-label *ngIf="globals.map">
+                    Map
+                </ng-template>
+                <app-msf-map #msfMapRef *ngIf="globals.map"></app-msf-map>
         </mat-tab> 
 
-        <!-- <mat-tab *ngIf="globals.query" style="height: 100%;"> -->
         <mat-tab [ngClass]="globals.query ? 'msf-show' : 'msf-hide'" style="height: 100%;">
-            <ng-template mat-tab-label>
+            <ng-template mat-tab-label *ngIf="globals.query">
                 Current Query General Summary
                 <mat-icon (click)="closeTab(1)" class="close-icon">close</mat-icon>
             </ng-template>
@@ -32,7 +37,7 @@
         </mat-tab>
 
         <mat-tab [ngClass]="globals.generateDynamicTable ? 'msf-show' : 'msf-hide'" #msfDynamicTableTabRef>
-            <ng-template mat-tab-label>
+            <ng-template mat-tab-label *ngIf="globals.generateDynamicTable">
                 Dynamic Table
                 <mat-icon (click)="closeTab(3)" class="close-icon">close</mat-icon>
             </ng-template>
@@ -46,17 +51,9 @@
             </ng-template>
             <app-msf-chart-on-time-delay #msfChartRef *ngIf="globals.chart"></app-msf-chart-on-time-delay>
         </mat-tab> 
-
-        <mat-tab [ngClass]="globals.map ? 'msf-show' : 'msf-hide'"#tabRef>
-            <ng-template mat-tab-label>
-                Map
-            </ng-template>
-            <app-msf-map #msfMapRef *ngIf="globals.map"></app-msf-map>
-        </mat-tab> 
     </mat-tab-group> 
 <!-- </ng-container> -->
 
-<!-- <app-msf-schedule-maps [ngClass]="!globals.showTabs && globals.hideParametersPanels? 'msf-show' : 'msf-hide'" > </app-msf-schedule-maps> -->
 <app-msf-schedule-maps *ngIf="globals.mapsc"> </app-msf-schedule-maps>
 
 <app-menu-nav></app-menu-nav>
