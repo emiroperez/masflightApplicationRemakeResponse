@@ -173,6 +173,7 @@ export class ApplicationComponent implements OnInit {
       }else{
         this.globals.mapsc=false;
       }
+      this.globals.tab = true;
       setTimeout(() => {
         this.search2();
       }, 3000);   
@@ -204,13 +205,13 @@ export class ApplicationComponent implements OnInit {
     if(this.globals.moreResultsBtn){
       this.globals.moreResults = false;
       this.globals.query = true;
-      // if(this.globals.currentOption.metaData==2){
-      //   this.globals.mapsc=true;
+      if(this.globals.currentOption.metaData==2){
+        this.globals.mapsc=true;
         
-      // }else{
-      //   this.globals.mapsc=false;
-      // }
-     // this.globals.tab = true;
+      }else{
+        this.globals.mapsc=false;
+      }
+     this.globals.tab = true;
       
       this.globals.isLoading = true;
   
@@ -351,7 +352,7 @@ export class ApplicationComponent implements OnInit {
     if(tab==1){
       this.globals.query = false;
     }else if(tab==2){
-     // this.globals.tab = false;
+      this.globals.tab = false;
     }else if(tab==3){
       this.globals.generateDynamicTable = false;
     }else if(tab==4){

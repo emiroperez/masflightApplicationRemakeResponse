@@ -151,6 +151,9 @@ export class MenuNavComponent implements OnInit {
       this.globals.currentOption = option;
       this.globals.mapsc = false;
       this.globals.dataAvailabilityInit();
+      if(this.globals.currentOption.tabType != 'map' && this.globals.currentOption.tabType != 'scmap'){
+        this.globals.tab=true;
+      }
       if(this.globals.currentOption.tabType === 'map'){
         this.globals.map = true;
         this.globals.selectedIndex = 1;

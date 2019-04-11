@@ -2,19 +2,20 @@
 <!-- <ng-container [ngClass]="globals.showTabs ? 'display_block' : 'ocultar'">         -->
     <mat-tab-group [ngClass]="globals.showTabs ? 'msf-show' : 'msf-hide'" [selectedIndex]="globals.getSelectedIndex()" #tabs>
         
-        <mat-tab [ngClass]="!globals.map && !globals.hideParametersPanels ? 'msf-show' : 'msf-hide'">
-            <ng-template mat-tab-label *ngIf="!globals.map && !globals.hideParametersPanels && globals.showTabs">
+        <!-- <mat-tab [ngClass]="!globals.map && !globals.mapsc ? 'msf-show' : 'msf-hide'"> -->
+        <mat-tab [ngClass]="globals.query ? 'msf-show' : 'msf-hide'">
+            <ng-template mat-tab-label  *ngIf="globals.tab">
                 {{globals.currentOption.tab}} 
                 <mat-icon (click)="closeTab(2)" class="close-icon">close</mat-icon>
             </ng-template>
-            <div *ngIf="!globals.map && !globals.hideParametersPanels" class="msf-viewport-container">
+            <div  *ngIf="!globals.map && !globals.hideParametersPanels && globals.showTabs" class="msf-viewport-container">
                 <app-msf-table #msfTableRef [tabRef]="tabRef"></app-msf-table>
             </div>
         </mat-tab>
 
         <mat-tab [ngClass]="globals.hideParametersPanels ? 'msf-show' : 'msf-hide'">
-            <ng-template mat-tab-label *ngIf="globals.hideParametersPanels">
-                {{globals.currentOption.tab}} <mat-icon (click)="closeTab(2)" class="close-icon">close</mat-icon>
+            <ng-template mat-tab-label *ngIf="globals.mapsc">
+                {{globals.currentOption.tab}} 
             </ng-template>
             <div *ngIf="globals.hideParametersPanels" class="msf-viewport-container">
                 <app-msf-schedule-panel></app-msf-schedule-panel>
@@ -31,7 +32,7 @@
         </mat-tab>
 
         <mat-tab [ngClass]="globals.generateDynamicTable ? 'msf-show' : 'msf-hide'" #msfDynamicTableTabRef>
-            <ng-template mat-tab-label *ngIf="globals.generateDynamicTable">
+            <ng-template mat-tab-label>
                 Dynamic Table
                 <mat-icon (click)="closeTab(3)" class="close-icon">close</mat-icon>
             </ng-template>

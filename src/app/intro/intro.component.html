@@ -20,8 +20,7 @@
         </div>
     </div>
     <div *ngIf="globals.currentOption != 'dashboard'" class="msf-intro-body-body">
-        <div *ngFor="let desc of content"
-            style="margin: 0% 0% 2% 4%; padding-right: 8%; overflow-y: scroll; height: 100%;">
+        <div *ngFor="let desc of content" class="msf-intro-body-body-div">
             <app-intro-welcome [content]="desc"></app-intro-welcome>
         </div>
 

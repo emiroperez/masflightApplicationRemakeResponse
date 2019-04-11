@@ -3027,6 +3027,7 @@ div[id^=msf-dashboard-chart-display] {
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transition: 0.5s;
 }
 .msf-dashboard-container .msf-dashboard-title {
@@ -3079,6 +3080,7 @@ div[id^=msf-dashboard-chart-display] {
 .msf-dashboard-container .msf-dashboard-chartbox .msf-dashboard-chartbox-column {
   width: 100%;
   overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
 }
 .msf-dashboard-container .msf-dashboard-chartbox .msf-dashboard-chartbox-column .msf-dashboard-chartbox-items {
   width: 100%;
@@ -3182,6 +3184,7 @@ div[id^=msf-dashboard-chart-display] {
   padding: 10px;
   background-color: #3b3b3b;
   overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -3245,6 +3248,7 @@ div[id^=msf-dashboard-chart-display] {
   background-color: #222222;
   color: #ffffff;
   overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
 }
 .msf-dashboard-chartmenu-container-chart .msf-dashboard-chartmenu-title {
   font-size: 12px;
@@ -3297,6 +3301,7 @@ div[id^=msf-dashboard-chart-display] {
 
 .msf-dashboard-control-variables {
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   font-size: 10px;
   min-height: 85%;
   max-height: 85%;
@@ -3575,6 +3580,7 @@ input {
     height: 100%;
     width: calc(100% + 3%);
     overflow-y: Scroll;
+    -webkit-overflow-scrolling: touch;
     background-color: #333333;
   }
 
@@ -3698,6 +3704,7 @@ input {
 
   .msf-intro-body1 {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
   }
 
@@ -3850,6 +3857,14 @@ input {
     width: 100%;
   }
 
+  .msf-intro-body-body-div {
+    margin: 0% 0% 2% 4%;
+    padding-right: 8%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+  }
+
   .msf-menu-image, .msf-menu-image-border {
     padding-left: 10px;
     padding-right: 10px;
@@ -3960,6 +3975,7 @@ input {
 
   .msf-intro-body-mobile {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 0%;
   }
 

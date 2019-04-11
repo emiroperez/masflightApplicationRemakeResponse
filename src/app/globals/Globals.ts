@@ -60,6 +60,7 @@ export class Globals {
   scheduleChart :AmChart;
   schedulepanelinfo :any;
   mapsc: boolean = false;
+  tab : boolean= false;
 
   clearVariables(){
     this.currentOption=null;
@@ -85,6 +86,7 @@ export class Globals {
     this.showIntro = true;
     this.hideParametersPanels  =false;
     this.mapsc= false;
+    this.tab = false;
 
   }
 
