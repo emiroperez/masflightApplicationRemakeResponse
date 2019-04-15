@@ -3876,6 +3876,15 @@ input {
     flex-direction: column;
   }
 
+  .msf-schedule-panel-info {
+    width: 196px;
+  }
+
+  .panelinfo {
+    width: 195px;
+    height: 90px;
+  }
+
   /* cellphone landscape*/
 }
 @media only screen and (min-device-width: 481px) and (max-device-width: 767px) and (orientation: landscape) {
