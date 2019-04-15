@@ -183,6 +183,7 @@ export class ApplicationComponent implements OnInit {
   search2(){
     this.globals.query = true;
     this.globals.map = false; /*kp 27022019*/
+    this.globals.scheduledata = null;
     if(!this.globals.showMenu && this.globals.showCategoryArguments){
       this.globals.showTabs=true;
       this.globals.showCategoryArguments=false;
@@ -311,6 +312,7 @@ export class ApplicationComponent implements OnInit {
       this.globals.dataSource = false;
       this.globals.hideParametersPanels=false;
       this.globals.mapsc=false; 
+      this.globals.map=false; 
     }
     else if(!this.globals.showMenu && this.globals.showTabs){
       this.globals.showMenu = false;
@@ -319,6 +321,7 @@ export class ApplicationComponent implements OnInit {
       this.globals.showTabs=false;
       this.globals.dataSource = false;
       this.globals.mapsc=false; 
+      this.globals.map=false; 
       this.returnSearch();     
     }
   }

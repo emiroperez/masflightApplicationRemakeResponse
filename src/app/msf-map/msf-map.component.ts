@@ -22,7 +22,7 @@ export class MsfMapComponent implements OnInit {
 
   mapReady: boolean=false;
 
-  zoom = [1];
+  zoom = [4];
   
   center = [-73.968285, 40.785091];
 
@@ -68,89 +68,91 @@ export class MsfMapComponent implements OnInit {
   }
 
   successHandler(_this,features){
+    if(_this.globals.isLoading){
     _this.globals.endTimestamp = new Date();
     _this.data = features;
     _this.setCoordinates(features);
     if(features.length > 0){  
       let size =  Math.round(features[0].features.length/2);
       _this.center = features[0].features[size].geometry.coordinates;       
-      _this.getChart(_this);  
+      // _this.getChart(_this);  
       _this.zoom = [4];    
     }
     _this.globals.isLoading = false;
     
-	}
+  }
+}
 
   errorHandler(_this,data){
     _this.globals.isLoading = false;
   }
 
-  getHeight(){
-    if(this.data != null && this.data.length == 1 ){
-      return 60;
-    }
-    return 100;
-  }
+  // getHeight(){
+  //   // if(this.data != null && this.data.length == 1 ){
+  //   //   return 60;
+  //   // }
+  //   return 100;
+  // }
 
-  getChart(_this){
-    _this.mapReady = true;
-    let chartData = _this.generateChartData();
+  // getChart(_this){
+  //   _this.mapReady = true;
+  //   let chartData = _this.generateChartData();
 
-    _this.chart = _this.AmCharts.makeChart("chartdiv", {
-        "type": "serial",
-        "theme": "black",
-        "legend": {
-            "useGraphSettings": true
-        },
-        "dataProvider": chartData,
-        "synchronizeGrid":true,
-        "valueAxes": [{
-            "id":"v1",
-            "axisColor": "#FF6600",
-            "axisThickness": 2,
-            "axisAlpha": 1,
-            "position": "left"
-        }, {
-            "id":"v2",
-            "axisColor": "#FCD202",
-            "axisThickness": 2,
-            "axisAlpha": 1,
-            "position": "right"
-        }],
-        "graphs": [{
-            "valueAxis": "v1",
-            "lineColor": "#FF6600",
-            "hideBulletsCount": 0,
-            "title": "Altitude",
-            "valueField": "altitude",
-        "fillAlphas": 0
-        }, {
-            "valueAxis": "v2",
-            "lineColor": "#FCD202",
-            "hideBulletsCount": 0,
-            "title": "Speed",
-            "valueField": "groundSpeed",
-        "fillAlphas": 0
-        }],
-        "chartScrollbar": {},
-        "chartCursor": {
-            "cursorPosition": "mouse"
-        },
-        "categoryField": "pointInTime",
-        "categoryAxis": {
-            "parseDates": false,
-            "axisColor": "#DADADA",
-            "minorGridEnabled": true,
-            "labelsEnabled": false
-        },
-        "export": {
-          "enabled": false
-        }
-    });
+  //   _this.chart = _this.AmCharts.makeChart("chartdiv", {
+  //       "type": "serial",
+  //       "theme": "black",
+  //       "legend": {
+  //           "useGraphSettings": true
+  //       },
+  //       "dataProvider": chartData,
+  //       "synchronizeGrid":true,
+  //       "valueAxes": [{
+  //           "id":"v1",
+  //           "axisColor": "#FF6600",
+  //           "axisThickness": 2,
+  //           "axisAlpha": 1,
+  //           "position": "left"
+  //       }, {
+  //           "id":"v2",
+  //           "axisColor": "#FCD202",
+  //           "axisThickness": 2,
+  //           "axisAlpha": 1,
+  //           "position": "right"
+  //       }],
+  //       "graphs": [{
+  //           "valueAxis": "v1",
+  //           "lineColor": "#FF6600",
+  //           "hideBulletsCount": 0,
+  //           "title": "Altitude",
+  //           "valueField": "altitude",
+  //       "fillAlphas": 0
+  //       }, {
+  //           "valueAxis": "v2",
+  //           "lineColor": "#FCD202",
+  //           "hideBulletsCount": 0,
+  //           "title": "Speed",
+  //           "valueField": "groundSpeed",
+  //       "fillAlphas": 0
+  //       }],
+  //       "chartScrollbar": {},
+  //       "chartCursor": {
+  //           "cursorPosition": "mouse"
+  //       },
+  //       "categoryField": "pointInTime",
+  //       "categoryAxis": {
+  //           "parseDates": false,
+  //           "axisColor": "#DADADA",
+  //           "minorGridEnabled": true,
+  //           "labelsEnabled": false
+  //       },
+  //       "export": {
+  //         "enabled": false
+  //       }
+  //   });
 
-    _this.chart.addListener("dataUpdated", _this.zoomChart);
-    _this.zoomChart();
-  }
+  //   _this.chart.addListener("dataUpdated", _this.zoomChart);
+  //   _this.zoomChart();
+  // }
   
 
   generateChartData() {
@@ -161,10 +163,10 @@ export class MsfMapComponent implements OnInit {
       return chartData;
   }
 
-  zoomChart(){
-    let lastIndex =  Math.round(this.chart.dataProvider.length);
-    this.chart.zoomToIndexes(0, lastIndex);  
-  }
+  // zoomChart(){
+  //   let lastIndex =  Math.round(this.chart.dataProvider.length);
+  //   this.chart.zoomToIndexes(0, lastIndex);  
+  // }
 
   mapTypeChange(type){
     switch (type.id) {

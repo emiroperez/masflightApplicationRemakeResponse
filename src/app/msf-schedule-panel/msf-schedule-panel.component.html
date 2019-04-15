@@ -7,7 +7,7 @@
 </mat-toolbar> -->
 <button mat-raised-button class="btn-showMap" (click)="showMap()">Show Map</button>
 <mat-accordion>
-  <mat-expansion-panel  class="msf-schedule-panel" *ngFor="let item of aux; let indexopen = index" >
+  <mat-expansion-panel  class="msf-schedule-panel" *ngFor="let item of globals.scheduledata; let indexopen = index" >
     <mat-expansion-panel-header class="msf-schedule-mat-expansion-panel-header" > 
       <mat-panel-title class="msf-schedule-panel-header">
        {{item.Flight.Marketing_Airline}} {{item.Flight.Airline}} - F# {{item.Flight.FlightNo}} {{item.TouchedAirports}}

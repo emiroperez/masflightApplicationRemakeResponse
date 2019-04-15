@@ -5,7 +5,7 @@
           </mat-option>
       </mat-select>
   </mat-form-field>
-  <mgl-map *ngIf="currentMapType.id == 'point'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()">      
+  <mgl-map *ngIf="currentMapType.id == 'point'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="100">      
     <ng-container *ngFor="let feature of data; let i = index ">
         <mgl-marker  [lngLat]="[feature.features[0].origin.longitude, feature.features[0].origin.latitude]">
             <div style="justify-content: center; color: #01abec">            
@@ -22,7 +22,8 @@
     </ng-container>
   </mgl-map>
 
-  <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()">
+  <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center" [style.height.%]="100">
+  <!-- <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()"> -->
     <mgl-layer
       id="route"
       type="line"
@@ -49,5 +50,5 @@
     </mgl-layer>
   </mgl-map>
 
-  <div id="chartdiv" [style.width.%]="100" [style.height.%]="40" style="display: block;background-color: #000; color: #fff;"></div>
+  <!-- <div id="chartdiv" [style.width.%]="100" [style.height.%]="40" style="display: block;background-color: #000; color: #fff;"></div> -->
      
