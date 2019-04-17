@@ -329,6 +329,7 @@ export class ApplicationComponent implements OnInit {
   
   backMap(){
     this.globals.showTabs=true;
+    this.globals.showMap=false;
   }
 
   

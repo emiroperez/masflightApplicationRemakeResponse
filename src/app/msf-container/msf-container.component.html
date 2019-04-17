@@ -1,7 +1,9 @@
 <ng-container *ngIf="globals.showTabs">
-        <mat-tab-group [selectedIndex]="globals.getSelectedIndex()" #tabs [ngClass]="!globals.map ? 'msf-show' : 'msf-hide'">
+    <div style="height: 100%;"  [hidden]= "globals.mapsc || globals.map">
+        <mat-tab-group [selectedIndex]="globals.getSelectedIndex()" #tabs>
 
-            <mat-tab *ngIf="globals.tab && !globals.map && !globals.hideParametersPanels">
+            <mat-tab *ngIf="globals.tab">
+            <!-- <mat-tab *ngIf="globals.tab && !globals.map && !globals.hideParametersPanels"> -->
                 <ng-template mat-tab-label>
                     {{globals.currentOption.tab}} 
                     <mat-icon (click)="closeTab(2)" class="close-icon">close</mat-icon>
@@ -27,7 +29,8 @@
                 <app-msf-map #msfMapRef></app-msf-map>
             </mat-tab> -->
 
-            <mat-tab *ngIf="globals.query && !globals.hideParametersPanels && !globals.map" style="height: 100%;">
+            <mat-tab *ngIf="globals.query">
+            <!-- <mat-tab *ngIf="globals.query && !globals.hideParametersPanels && !globals.map" style="height: 100%;"> -->
                 <ng-template mat-tab-label>
                     Current Query General Summary
                     <mat-icon (click)="closeTab(1)" class="close-icon">close</mat-icon>
@@ -52,14 +55,17 @@
             </mat-tab>
 
         </mat-tab-group>
+    </div>
     </ng-container>
     
     <!-- <app-msf-map #msfMapRef [ngClass]="globals.map ? 'msf-show' : 'msf-hide'"></app-msf-map> -->
 
     <app-msf-schedule-panel [ngClass]="globals.hideParametersPanels && globals.showTabs ? 'msf-show' : 'msf-hide'"></app-msf-schedule-panel>
-    <app-msf-schedule-maps  [ngClass]="!globals.showTabs && globals.mapsc  ? 'msf-show' : 'msf-hide'"> </app-msf-schedule-maps>
+    <!-- <app-msf-schedule-maps  [ngClass]="!globals.showTabs && globals.mapsc  ? 'msf-show' : 'msf-hide'"> </app-msf-schedule-maps> -->
+    <app-msf-schedule-maps  [hidden]= "!globals.showMap"> </app-msf-schedule-maps>
+    <!-- <app-msf-schedule-maps  *ngIf= "globals.showMap"> </app-msf-schedule-maps> -->
 
-     <app-msf-map #msfMapRef *ngIf="globals.map"></app-msf-map>
+    <app-msf-map #msfMapRef *ngIf="globals.map "></app-msf-map>
     <app-menu-nav></app-menu-nav>
     
     <app-intro></app-intro>

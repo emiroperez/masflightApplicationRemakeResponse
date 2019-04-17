@@ -61,6 +61,7 @@ export class Globals {
   schedulepanelinfo :any;
   mapsc: boolean = false;
   tab : boolean= false;
+  showMap : boolean= false;
 
   clearVariables(){
     this.currentOption=null;
@@ -87,6 +88,7 @@ export class Globals {
     this.hideParametersPanels  =false;
     this.mapsc= false;
     this.tab = false;
+    this.showMap=false;
 
   }
 

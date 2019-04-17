@@ -12,6 +12,7 @@ export class MsfScheduleMapsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.globals.scheduleChart = this.AmCharts.makeChart ("chartdivmap", this.makeOptions (""));
   }
   makeOptions(dataProvider)
   {
@@ -63,8 +64,8 @@ export class MsfScheduleMapsComponent implements OnInit {
   }
 
 }
-  ngAfterViewInit() {
-       this.globals.scheduleChart = this.AmCharts.makeChart ("chartdivmap", this.makeOptions (""));
-  }
+  // ngAfterViewInit() {
+  //     //  this.globals.scheduleChart = this.AmCharts.makeChart ("chartdivmap", this.makeOptions (""));
+  // }
 
 }
