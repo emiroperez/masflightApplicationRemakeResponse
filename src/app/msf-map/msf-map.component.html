@@ -1,11 +1,11 @@
-  <mat-form-field class="msf-width-20 padding-5">
+  <mat-form-field class="msf-width-20 padding-5" Style="height: 9%;">
       <mat-select placeholder="" [(ngModel)]="currentMapType" (selectionChange)="mapTypeChange($event.value)">
           <mat-option *ngFor="let mapType of mapTypes" [value]="mapType">
           {{mapType.name}}
           </mat-option>
       </mat-select>
   </mat-form-field>
-  <mgl-map *ngIf="currentMapType.id == 'point'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="100">      
+  <mgl-map *ngIf="currentMapType.id == 'point'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="91">      
     <ng-container *ngFor="let feature of data; let i = index ">
         <mgl-marker  [lngLat]="[feature.features[0].origin.longitude, feature.features[0].origin.latitude]">
             <div style="justify-content: center; color: #01abec">            
@@ -22,7 +22,7 @@
     </ng-container>
   </mgl-map>
 
-  <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center" [style.height.%]="100">
+  <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center" [style.height.%]="91">
   <!-- <mgl-map *ngIf="currentMapType.id == 'line'" #map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="zoom" [center]="center"  [style.height.%]="getHeight()"> -->
     <mgl-layer
       id="route"

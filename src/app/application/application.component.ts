@@ -163,6 +163,8 @@ export class ApplicationComponent implements OnInit {
   search(){
     this.globals.moreResults = false;
     this.globals.isLoading=true;
+    this.globals.map = false; /*kp 27022019*/
+    this.globals.scheduledata = null;
     if(!this.globals.showMenu && this.globals.showCategoryArguments){
       this.globals.showTabs=true;
       this.globals.showCategoryArguments=false;
@@ -173,6 +175,9 @@ export class ApplicationComponent implements OnInit {
       }else{
         this.globals.mapsc=false;
       }
+      if(this.globals.currentOption.tabType === 'map'){
+        this.globals.map = true;     
+      }
       this.globals.tab = true;
       setTimeout(() => {
         this.search2();
@@ -182,15 +187,12 @@ export class ApplicationComponent implements OnInit {
 
   search2(){
     this.globals.query = true;
-    this.globals.map = false; /*kp 27022019*/
-    this.globals.scheduledata = null;
     if(!this.globals.showMenu && this.globals.showCategoryArguments){
       this.globals.showTabs=true;
       this.globals.showCategoryArguments=false;
       this.globals.showcurrentAgts=false;
     } 
     if(this.globals.currentOption.tabType === 'map'){
-      this.globals.map = true;
       this.msfContainerRef.msfMapRef.getTrackingDataSource();       
     }else if(this.globals.currentOption.tabType === 'usageStatistics'){
       this.msfContainerRef.msfTableRef.getDataUsageStatistics();
